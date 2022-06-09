@@ -1,0 +1,23 @@
+{
+    "name": "vitaly/alstroemeria.loc",
+    "authors": [
+        {
+            "name": "VitalyWeb",
+            "email": "vitalicheg28@mail.ru"
+        }
+    ],
+    "require": {
+        "ext-mysqli": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\Engine\\": "app/Engine",
+            "app\\Engine\\DIsModules\\": "app/Engine/DIModules",
+            "app\\Controllers\\": "app/Controllers",
+            "app\\Models\\": "app/Models",
+            "app\\Services\\": "app/Services",
+            "app\\Suppliers\\": "app/Suppliers"
+        }
+    }
+}
