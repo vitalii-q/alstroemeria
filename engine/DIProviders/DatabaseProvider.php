@@ -5,8 +5,16 @@ use engine\DIModules\Database\Connection;
 
 class DatabaseProvider extends ModuleProvider
 {
+    /**
+     * @var string
+     */
     private $serviceName = 'Configs';
 
+    /**
+     * Initializing the database connection module
+     *
+     * @return void
+     */
     public function init()
     {
         $db = new Connection();

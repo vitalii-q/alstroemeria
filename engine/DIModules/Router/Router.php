@@ -38,7 +38,7 @@ class Router
     }
 
     /**
-     * Connecting middleware to route
+     * Connecting middleware to the route
      *
      * @param $middlewareName
      * @return void

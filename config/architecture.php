@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * application services architecture
+ */
+
 return [
     'DI' => [
         engine\DIProviders\DatabaseProvider::class,

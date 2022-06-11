@@ -14,7 +14,7 @@ class DataProvider
     ];
 
     /**
-     * Supplier handling
+     * Running the supplier handling
      *
      * @param $theme
      * @return void

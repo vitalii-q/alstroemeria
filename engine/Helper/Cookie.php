@@ -5,6 +5,8 @@ namespace engine\Helper;
 class Cookie
 {
     /**
+     * Setting cookie
+     *
      * @param $key
      * @param $value
      * @param $time
@@ -16,6 +18,8 @@ class Cookie
     }
 
     /**
+     * Getting cookie
+     *
      * @param $key
      * @return mixed|null
      */
@@ -28,6 +32,8 @@ class Cookie
     }
 
     /**
+     * Deleting cookie
+     *
      * @param $key
      * @return void
      */

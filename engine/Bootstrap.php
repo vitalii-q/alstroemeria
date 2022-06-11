@@ -8,6 +8,8 @@ use engine\Helper\Get\Configs;
 
 try {
     /**
+     * Bootstrap file - файл начальной загрузки
+     *
      * TODO: PHPdoc
      * TODO: PHPunit
      */

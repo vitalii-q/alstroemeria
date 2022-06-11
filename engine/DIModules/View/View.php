@@ -4,10 +4,21 @@ namespace engine\DIModules\View;
 
 class View
 {
+    /**
+     * @var
+     */
     protected $services;
 
+    /**
+     * @var Theme
+     */
     protected $theme;
 
+    /**
+     * Saving services to a class and connecting to the template body file
+     *
+     * @param $services
+     */
     public function __construct($services)
     {
         $this->services = $services;

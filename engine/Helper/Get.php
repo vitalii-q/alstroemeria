@@ -4,6 +4,8 @@ namespace engine\Helper;
 class Get
 {
     /**
+     * Getting the parameters of a configuration files
+     *
      * @param $key
      * @return mixed
      * @throws \Exception

@@ -4,14 +4,35 @@ namespace engine\DIModules\View;
 
 class Theme
 {
+    /**
+     * Path to the header file
+     *
+     * @var string
+     */
     protected $header = ROOT_DIR . '/resources/views/themes/default/header.php';
 
+    /**
+     * Path to the footer file
+     *
+     * @var string
+     */
     protected $footer = ROOT_DIR . '/resources/views/themes/default/footer.php';
 
+    /**
+     * @var
+     */
     protected $services;
 
+    /**
+     * @var
+     */
     protected $variables;
 
+    /**
+     * Saving services to a class and connecting to header and footer
+     *
+     * @param $services
+     */
     public function __construct($services)
     {
         $this->services = $services;
@@ -51,6 +72,8 @@ class Theme
     }
 
     /**
+     * Setting variables from the suppliers
+     *
      * @param $key
      * @param $value
      * @return mixed

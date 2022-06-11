@@ -11,10 +11,13 @@ final class StaticQueryBuilder
      */
     private $query;
 
+    /**
+     * @var
+     */
     private $table;
 
     /**
-     * Конструктор.
+     * Query builder constructor
      */
     public function __construct($table)
     {
@@ -22,19 +25,31 @@ final class StaticQueryBuilder
         $this->query = '';
     }
 
+    /**
+     * @param string $select
+     * @return void
+     */
     public function get($select = '*')
     {
         $this->query .= 'SELECT ' . $select . ' FROM ' . $this->table;
     }
 
-
-    public function where($field, string $condition, $operator = '=') // , $union = false
+    /**
+     * @param $field
+     * @param mixed $condition
+     * @param $operator
+     * @return void
+     */
+    public function where($field, $condition, $operator = '=') // , $union = false
     {
         $this->query .= ' WHERE ' . $field. $operator . '"' .$condition . '"';
     }
 
     /**
      * TODO: добавить массовое добавление
+     *
+     * @param $fields
+     * @return void
      */
     public function insert($fields)
     {
@@ -51,6 +66,11 @@ final class StaticQueryBuilder
         $this->query .= $keys . ') values (' . $values . ')';
     }
 
+    /**
+     * @param $id
+     * @param $fields
+     * @return void
+     */
     public function update($id, $fields)
     {
         $this->query .= 'UPDATE ' . $this->table . ' SET ';
@@ -66,6 +86,10 @@ final class StaticQueryBuilder
         $this->query .= ' WHERE id = ' . $id;
     }
 
+    /**
+     * @param $ids
+     * @return void
+     */
     public function delete($ids) {
         $this->query .= 'DELETE FROM ' . $this->table . ' WHERE ';
         $i = 0; foreach ($ids as $id) {
@@ -77,6 +101,11 @@ final class StaticQueryBuilder
         }
     }
 
+    /**
+     * Query execution sql function
+     *
+     * @return array
+     */
     public function execute() // : string сделает обязательным возвращением функцией строки
     {
         $connection = new Connection();

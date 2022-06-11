@@ -7,12 +7,26 @@ use engine\Services\Router\Route;
 
 class App
 {
+    /**
+     * @var DI
+     */
     protected $di;
 
+    /**
+     * @var mixed|null
+     */
     protected $router;
 
+    /**
+     * @var mixed|null
+     */
     protected $db;
 
+    /**
+     * Saving DI modules to the self class
+     *
+     * @param DI $di
+     */
     public function __construct(DI $di)
     {
         $this->di = $di;
@@ -20,6 +34,11 @@ class App
         $this->db = $di->get('Configs');
     }
 
+    /**
+     * Running the app
+     *
+     * @return void
+     */
     public function run() {
         require_once 'app/routes.php'; // подключается один раз
 

@@ -5,9 +5,15 @@ namespace engine\Database;
 trait StaticQueryHandler
 {
     /**
+     * Sql static query handler
+     *
      * TODO: Обернуть в try catch
      */
 
+    /**
+     * @param array $fields
+     * @return mixed
+     */
     public function create(array $fields)
     {
         /* format
@@ -21,6 +27,11 @@ trait StaticQueryHandler
         return $qb->execute()['lastInsertID']; // возвращаем ID
     }
 
+    /**
+     * @param $id
+     * @param array $fields
+     * @return mixed
+     */
     public function update($id, array $fields)
     {
         /* format
@@ -34,6 +45,9 @@ trait StaticQueryHandler
         return $qb->execute()['lastInsertID']; // возвращаем ID
     }
 
+    /**
+     * @return mixed
+     */
     public function get()
     {
         /* format
@@ -44,6 +58,12 @@ trait StaticQueryHandler
         return $qb->execute()['result'];
     }
 
+    /**
+     * @param $field
+     * @param $condition
+     * @param $operator
+     * @return mixed
+     */
     public function where($field, $condition, $operator = '=')
     {
         /* format
@@ -55,6 +75,10 @@ trait StaticQueryHandler
         return $qb->execute()['result'];
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function find($id)
     {
         /*format
@@ -66,6 +90,10 @@ trait StaticQueryHandler
         return $qb->execute()['result'][0];
     }
 
+    /**
+     * @param $ids
+     * @return mixed
+     */
     public function delete($ids)
     {
         /* format

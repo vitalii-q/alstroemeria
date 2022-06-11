@@ -5,8 +5,16 @@ use engine\Helper\Get\Configs;
 
 class Connection
 {
+    /**
+     * @var
+     */
     private $link;
 
+    /**
+     * Connecting to the database when the class is called
+     *
+     * @throws \Exception
+     */
     public function __construct()
     {
         $this->connect();
@@ -30,6 +38,14 @@ class Connection
         }
     }
 
+    /**
+     * Query execution function
+     *
+     * @param $query
+     * @param $values
+     * @param $statement
+     * @return mixed
+     */
     public function query($query, $values = [], $statement = \PDO::FETCH_OBJ)
     {
         $sql = $this->link->prepare($query); // подготовка запроса
@@ -41,6 +57,11 @@ class Connection
         return $result;
     }
 
+    /**
+     * Getting the id of the last database query item
+     *
+     * @return mixed
+     */
     public function lastInsertID()
     {
         return $this->link->lastInsertId(); // PDO возвращает id последнего элемента

@@ -4,12 +4,27 @@ namespace engine\DIModules\Router;
 
 class Route
 {
+    /**
+     * @var mixed
+     */
     private $controller;
 
+    /**
+     * @var mixed
+     */
     private $method;
 
+    /**
+     * @var array|mixed
+     */
     private $parameters;
 
+    /**
+     * Adding route parameters
+     *
+     * @param $route
+     * @param $parameters
+     */
     public function __construct($route, $parameters = [])
     {
         $this->controller = $route['controller'];

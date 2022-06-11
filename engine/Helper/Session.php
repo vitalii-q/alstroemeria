@@ -4,12 +4,16 @@ namespace engine\Helper;
 
 class Session
 {
+    /**
+     * Setting sessions, max four lvl
+     *
+     * @param $path
+     * @param $value
+     * @return void
+     */
     public function set($path, $value)
     {
         $pathExp = explode('.', $path);
-
-        //session_unset();
-
 
         /**
          * Вариант кода с записью в разные уровни массива (4 уровня)
@@ -90,6 +94,12 @@ class Session
         }
     }
 
+    /**
+     * Availability check sessions
+     *
+     * @param $path
+     * @return bool|void
+     */
     public function isset($path)
     {
         $pathExp = explode('.', $path);
@@ -102,6 +112,12 @@ class Session
         }
     }
 
+    /**
+     * Getting sessions
+     *
+     * @param $path
+     * @return mixed|void
+     */
     public function get($path)
     {
         $pathExp = explode('.', $path);
@@ -114,6 +130,12 @@ class Session
         }
     }
 
+    /**
+     * Unsetting sessions
+     *
+     * @param $path
+     * @return void
+     */
     public function unset($path)
     {
         $pathExp = explode('.', $path);

@@ -8,5 +8,10 @@ class Department
 {
     use StaticQueryHandler;
 
+    /**
+     * Departments table name variable
+     *
+     * @var string
+     */
     protected static $table = 'department';
 }

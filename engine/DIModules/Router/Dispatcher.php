@@ -4,13 +4,27 @@ namespace engine\DIModules\Router;
 
 class Dispatcher
 {
+    /**
+     * @var
+     */
     private $routes;
 
+    /**
+     * Save routes to the class variable
+     *
+     * @param $routes
+     */
     public function __construct($routes)
     {
         $this->routes = $routes;
     }
 
+    /**
+     * Searching for the current route and route parameters
+     *
+     * @param $path
+     * @return Route|null
+     */
     public function search($path)
     {
         foreach ($this->routes as $route) {
@@ -29,6 +43,13 @@ class Dispatcher
         return null;
     }
 
+    /**
+     * Check the route for statics
+     *
+     * @param $currentPath
+     * @param $routeUrl
+     * @return bool
+     */
     public function check($currentPath, $routeUrl)
     {
         $parts = parse_url($currentPath);
@@ -39,6 +60,13 @@ class Dispatcher
         return false;
     }
 
+    /**
+     * Check the route for dynamics
+     *
+     * @param $currentPath
+     * @param $route
+     * @return array|false
+     */
     public function checkDynamic($currentPath, $route) {
         // 1) разбиваем на части. 2) убираем пустые ячейки. 3) нумеруем массив 0, 1, 2...
         $expPath = array_values(array_diff(explode('/', $currentPath), array('')));
@@ -64,6 +92,12 @@ class Dispatcher
         return false;
     }
 
+    /**
+     * Getting url parameters
+     *
+     * @param $currentPath
+     * @return array|mixed
+     */
     public function getParameters($currentPath)
     {
         $parts = parse_url($currentPath);

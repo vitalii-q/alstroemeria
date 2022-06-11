@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Application database configurations
+ */
+
 return [
     'host' => 'localhost',
     'database' => 'alstroemeria',

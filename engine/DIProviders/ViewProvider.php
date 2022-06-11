@@ -8,8 +8,16 @@ use engine\Helper\Get\Configs;
 
 class ViewProvider extends ModuleProvider
 {
+    /**
+     * @var string
+     */
     protected $serviceName = 'view';
 
+    /**
+     * Initializing the view module and filling it with services
+     *
+     * @return mixed|void
+     */
     public function init()
     {
         $config = Configs::getInstance()->get('arch');
