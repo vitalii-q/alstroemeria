@@ -24,6 +24,9 @@
             <button onclick="auth.login()" class="btn btn-lg btn-primary btn-block">Login</button>
         </form>
 
+        <br>
+        <button onclick="auth.logout()">Logout</button>
+
     </div>
 
     <script src="/resources/assets/js/auth.js"></script>

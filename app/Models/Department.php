@@ -2,7 +2,7 @@
 
 namespace app\Models;
 
-use app\Engine\Database\StaticQueryHandler;
+use engine\Database\StaticQueryHandler;
 
 class Department
 {

@@ -2,8 +2,8 @@
 
 namespace app\Controllers\Auth;
 
-use app\Engine\Foundation\Controller;
-use app\Models\User;
+use engine\Foundation\Controller;
+use Models\User;
 
 class RegController extends Controller
 {

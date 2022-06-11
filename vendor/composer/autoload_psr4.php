@@ -6,10 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'engine\\DIsModules\\' => array($baseDir . '/engine/DIModules'),
+    'engine\\' => array($baseDir . '/engine'),
     'app\\Suppliers\\' => array($baseDir . '/app/Suppliers'),
     'app\\Services\\' => array($baseDir . '/app/Services'),
     'app\\Models\\' => array($baseDir . '/app/Models'),
-    'app\\Engine\\DIsModules\\' => array($baseDir . '/app/Engine/DIModules'),
-    'app\\Engine\\' => array($baseDir . '/app/Engine'),
+    'app\\Middleware\\' => array($baseDir . '/app/Middleware'),
     'app\\Controllers\\' => array($baseDir . '/app/Controllers'),
 );

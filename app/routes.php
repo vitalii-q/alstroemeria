@@ -27,7 +27,7 @@ $this->router->add('admin', '/admin', 'Admin\AdminController:index');
 // site routes
 $this->router->add('home', '/', 'HomeController:index');
 
-$this->router->add('catalog', '/catalog', 'CatalogController:index');
+$this->router->add('catalog', '/catalog', 'CatalogController:index')->middleware('CatalogView');
 
 $this->router->add('blog', '/blog', 'BlogController:index');
 $this->router->add('blog_article', '/blog/{article}', 'BlogController:article');

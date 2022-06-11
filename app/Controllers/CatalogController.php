@@ -1,11 +1,12 @@
 <?php
 namespace app\Controllers;
 
-class CatalogController
+use engine\Foundation\Controller;
+
+class CatalogController extends Controller
 {
     public function index()
     {
-        echo 'catalog';
-       return '123';
+        $this->view->render('catalog');
     }
 }

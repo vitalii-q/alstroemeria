@@ -1,8 +1,6 @@
 <?php
 namespace app\Services\View;
 
-use app\Suppliers\DateTimeSupplier;
-
 class DataProvider
 {
     /**

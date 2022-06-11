@@ -1,13 +1,8 @@
 <?php
 
-ini_set("display_errors", 'on');
-//set_exception_handler("default_exception_handler");
+require_once ('config/php.php');
+require_once ('config/constants.php');
 
-/**
- * TODO: добавлять константы отдельным файлом
- */
-define('ROOT_DIR', $_SERVER['DOCUMENT_ROOT']); // добавляем константу
-
-require_once('app/Engine/Bootstrap.php');
+require_once('engine/Bootstrap.php');
 
 

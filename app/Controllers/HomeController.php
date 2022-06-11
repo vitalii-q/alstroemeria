@@ -1,7 +1,7 @@
 <?php
 namespace app\Controllers;
 
-use app\Engine\Foundation\Controller;
+use engine\Foundation\Controller;
 use app\Models\Department;
 
 class HomeController extends Controller

@@ -2,7 +2,7 @@
 
 namespace app\Suppliers;
 
-use app\Engine\Foundation\Suppliers;
+use engine\Foundation\Suppliers;
 
 class HelloSupplier extends Suppliers
 {

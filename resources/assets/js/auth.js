@@ -44,6 +44,26 @@ var auth = {
                 //console.log(result);
 
                 if (result == true) {
+                    //window.location = '/admin'; // редирект
+                }
+            }
+        });
+    },
+
+    logout: function() {
+        $.ajax({
+            url: '/login/logout',
+            type: this.ajaxMethod,
+            cache: false,
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+
+            },
+            success: function (result) {
+                //console.log(result);
+
+                if (result == true) {
                     window.location = '/'; // редирект
                 }
             }

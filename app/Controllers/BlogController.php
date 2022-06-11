@@ -2,7 +2,7 @@
 
 namespace app\Controllers;
 
-use app\Engine\Foundation\Controller;
+use engine\Foundation\Controller;
 
 class BlogController extends Controller
 {

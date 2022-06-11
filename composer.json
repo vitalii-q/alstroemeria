@@ -12,12 +12,13 @@
     },
     "autoload": {
         "psr-4": {
-            "app\\Engine\\": "app/Engine",
-            "app\\Engine\\DIsModules\\": "app/Engine/DIModules",
+            "engine\\": "engine",
+            "engine\\DIsModules\\": "engine/DIModules",
             "app\\Controllers\\": "app/Controllers",
             "app\\Models\\": "app/Models",
             "app\\Services\\": "app/Services",
-            "app\\Suppliers\\": "app/Suppliers"
+            "app\\Suppliers\\": "app/Suppliers",
+            "app\\Middleware\\": "app/Middleware"
         }
     }
 }

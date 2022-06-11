@@ -1,1 +1,5 @@
-<div>blog view</div>
+<?php $this->theme->header() ?>
+
+blog view
+
+<?php $this->theme->footer() ?>

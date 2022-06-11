@@ -7,18 +7,30 @@ namespace Composer\Autoload;
 class ComposerStaticInit2b77a795eaeab80949117bdab38a1617
 {
     public static $prefixLengthsPsr4 = array (
+        'e' => 
+        array (
+            'engine\\DIsModules\\' => 18,
+            'engine\\' => 7,
+        ),
         'a' => 
         array (
             'app\\Suppliers\\' => 14,
             'app\\Services\\' => 13,
             'app\\Models\\' => 11,
-            'app\\Engine\\DIsModules\\' => 22,
-            'app\\Engine\\' => 11,
+            'app\\Middleware\\' => 15,
             'app\\Controllers\\' => 16,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'engine\\DIsModules\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/engine/DIModules',
+        ),
+        'engine\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/engine',
+        ),
         'app\\Suppliers\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app/Suppliers',
@@ -31,13 +43,9 @@ class ComposerStaticInit2b77a795eaeab80949117bdab38a1617
         array (
             0 => __DIR__ . '/../..' . '/app/Models',
         ),
-        'app\\Engine\\DIsModules\\' => 
+        'app\\Middleware\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/app/Engine/DIModules',
-        ),
-        'app\\Engine\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/app/Engine',
+            0 => __DIR__ . '/../..' . '/app/Middleware',
         ),
         'app\\Controllers\\' => 
         array (

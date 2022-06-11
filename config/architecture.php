@@ -2,14 +2,19 @@
 
 return [
     'DI' => [
-        app\Engine\DIProviders\DatabaseProvider::class,
-        app\Engine\DIProviders\ViewProvider::class,
-        app\Engine\DIProviders\RouterProvider::class,
+        engine\DIProviders\DatabaseProvider::class,
+        engine\DIProviders\ViewProvider::class,
+        engine\DIProviders\RouterProvider::class,
     ],
 
     'Services' => [
         'View' => [
             'DataProvider' => app\Services\View\DataProvider::class,
+            'Middleware' => app\Services\View\Middleware::class,
         ]
+    ],
+
+    'Middleware' => [
+        'Auth' => app\Middleware\Auth::class,
     ]
 ];
