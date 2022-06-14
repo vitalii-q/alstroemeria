@@ -10,7 +10,6 @@ try {
     /**
      * Bootstrap file - файл начальной загрузки
      *
-     * TODO: PHPdoc
      * TODO: PHPunit
      */
     session_start();
