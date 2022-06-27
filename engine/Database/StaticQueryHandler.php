@@ -14,7 +14,7 @@ trait StaticQueryHandler
      * @param array $fields
      * @return mixed
      */
-    public function create(array $fields)
+    static public function create(array $fields)
     {
         /* format
         User::create([
@@ -32,7 +32,7 @@ trait StaticQueryHandler
      * @param array $fields
      * @return mixed
      */
-    public function update($id, array $fields)
+    static public function update($id, array $fields)
     {
         /* format
         $users = User::update(4, [
@@ -48,7 +48,7 @@ trait StaticQueryHandler
     /**
      * @return mixed
      */
-    public function get()
+    static public function get()
     {
         /* format
         $users = User::get();*/
@@ -64,7 +64,7 @@ trait StaticQueryHandler
      * @param $operator
      * @return mixed
      */
-    public function where($field, $condition, $operator = '=')
+    static public function where($field, $condition, $operator = '=')
     {
         /* format
         $users = User::where('id', 8, '>');*/
@@ -79,7 +79,7 @@ trait StaticQueryHandler
      * @param $id
      * @return mixed
      */
-    public function find($id)
+    static public function find($id)
     {
         /*format
         $users = User::find(1);*/
@@ -94,7 +94,7 @@ trait StaticQueryHandler
      * @param $ids
      * @return mixed
      */
-    public function delete($ids)
+    static public function delete($ids)
     {
         /* format
         $users = User::delete([9, 13]);*/

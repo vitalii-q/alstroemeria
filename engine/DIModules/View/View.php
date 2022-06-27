@@ -2,6 +2,8 @@
 
 namespace engine\DIModules\View;
 
+use engine\Modules\Log;
+
 class View
 {
     /**
@@ -48,7 +50,7 @@ class View
         $templatePath = $this->getTemplatePath($template);
 
         if(!file_exists($templatePath)) {
-            throw  new \ InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf('Template %s not found in "%s"', $template, $templatePath)
             );
         }

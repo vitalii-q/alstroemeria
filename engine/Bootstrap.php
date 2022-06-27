@@ -1,17 +1,21 @@
 <?php
 
+/**
+ * Bootstrap file - файл начальной загрузки
+ *
+ * TODO: PHPunit
+ */
+
 require_once __DIR__ . "/../vendor/autoload.php"; // __DIR__ директория этого файла
 
 use engine\DI;
 use engine\App;
 use engine\Helper\Get\Configs;
+use engine\Modules\Log;
+
+$log = new Log();
 
 try {
-    /**
-     * Bootstrap file - файл начальной загрузки
-     *
-     * TODO: PHPunit
-     */
     session_start();
 
     $di = new DI(); // Dependency injection
@@ -26,6 +30,7 @@ try {
     $app = new App($di);
     $app->run();
 } catch (\Exception $e) {
+    $log->logging($e->getMessage());
     echo $e->getMessage();
 }
 

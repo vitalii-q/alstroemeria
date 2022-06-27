@@ -10,7 +10,7 @@ class Common
      *
      * @return mixed
      */
-    public function getPath() {
+    static public function getPath() {
         return $_SERVER['REQUEST_URI'];
     }
 }

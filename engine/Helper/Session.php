@@ -11,7 +11,7 @@ class Session
      * @param $value
      * @return void
      */
-    public function set($path, $value)
+    static public function set($path, $value)
     {
         $pathExp = explode('.', $path);
 
@@ -28,6 +28,8 @@ class Session
 
                 $_SESSION[$pathExp[0]] = $value;
             } else {
+                var_dump($_SESSION);
+                var_dump($_SESSION[$pathExp[0]]);
                 array_push($_SESSION[$pathExp[0]], []);
             }
         }
@@ -100,7 +102,7 @@ class Session
      * @param $path
      * @return bool|void
      */
-    public function isset($path)
+    static public function isset($path)
     {
         $pathExp = explode('.', $path);
 
@@ -118,7 +120,7 @@ class Session
      * @param $path
      * @return mixed|void
      */
-    public function get($path)
+    static public function get($path)
     {
         $pathExp = explode('.', $path);
 
@@ -136,7 +138,7 @@ class Session
      * @param $path
      * @return void
      */
-    public function unset($path)
+    static public function unset($path)
     {
         $pathExp = explode('.', $path);
 
