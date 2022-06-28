@@ -2,7 +2,7 @@
 
 namespace app\Services\View;
 
-use engine\Helper\Get\Configs;
+use engine\Helper\Get\Config;
 
 class Middleware
 {
@@ -13,7 +13,7 @@ class Middleware
      */
     public function boot()
     {
-        foreach (Configs::getInstance()->get('arch')['Middleware'] as $middleware) {
+        foreach (Config::class()->get('arch')['Middleware'] as $middleware) {
             $middleware = new $middleware();
             $middleware->handle();
         }

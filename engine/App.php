@@ -3,7 +3,7 @@
 namespace engine;
 
 use engine\Modules\Http\HttpHandler;
-use engine\Services\Router\Route;
+use engine\DIModules\Router\Route;
 
 class App
 {
@@ -31,7 +31,7 @@ class App
     {
         $this->di = $di;
         $this->router = $di->get('router');
-        $this->db = $di->get('Configs');
+        $this->db = $di->get('Config');
     }
 
     /**

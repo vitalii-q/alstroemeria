@@ -1,7 +1,7 @@
 <?php
 namespace engine\DIModules\Database;
 
-use engine\Helper\Get\Configs;
+use engine\Helper\Get\Config;
 use engine\Modules\Log;
 
 class Connection
@@ -12,18 +12,12 @@ class Connection
     private $link;
 
     /**
-     * @var Log
-     */
-    private $log;
-
-    /**
      * Connecting to the database when the class is called
      *
      * @throws \Exception
      */
     public function __construct()
     {
-        $this->log = new Log();
         $this->connect();
     }
 
@@ -33,14 +27,14 @@ class Connection
      */
     private function connect()
     {
-        $config = Configs::getInstance()->get('database'); // конфигурации базы данных
+        $config = Config::class()->get('database'); // конфигурации базы данных
 
         try {
             $link = 'mysql:host='.$config['host'].';dbname='.$config['database'].';charset='.$config['charset'];
 
             $this->link = new \PDO($link, $config['username'], $config['password']);
         } catch (\PDOException $e) {
-            $this->log->logging($e->getMessage());
+            Log::class()->logging($e->getMessage());
             print "Error!: " . $e->getMessage();
             die();
         }

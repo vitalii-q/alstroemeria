@@ -8,7 +8,7 @@ class DatabaseProvider extends ModuleProvider
     /**
      * @var string
      */
-    private $serviceName = 'Configs';
+    private $serviceName = 'Config';
 
     /**
      * Initializing the database connection module

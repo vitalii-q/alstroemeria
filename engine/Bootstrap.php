@@ -10,17 +10,15 @@ require_once __DIR__ . "/../vendor/autoload.php"; // __DIR__ директори�
 
 use engine\DI;
 use engine\App;
-use engine\Helper\Get\Configs;
+use engine\Helper\Get\Config;
 use engine\Modules\Log;
-
-$log = new Log();
 
 try {
     session_start();
 
     $di = new DI(); // Dependency injection
 
-    $providers = Configs::getInstance()->get('arch');
+    $providers = Config::class()->get('arch');
 
     foreach ($providers['DI'] as $provider) {
         $moduleProvider = new $provider($di);
@@ -30,7 +28,7 @@ try {
     $app = new App($di);
     $app->run();
 } catch (\Exception $e) {
-    $log->logging($e->getMessage());
+    Log::class()->logging($e->getMessage());
     echo $e->getMessage();
 }
 

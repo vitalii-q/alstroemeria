@@ -4,7 +4,7 @@ namespace engine\Helper\Get;
 
 use engine\Helper\Get;
 
-class Configs // ПП singleton
+class Config // ПП singleton
 {
     /**
      * @var mixed
@@ -26,7 +26,7 @@ class Configs // ПП singleton
      *
      * @throws \Exception
      */
-    private function __construct() { // приватный конструктор ограничивает реализацию getInstance ()
+    private function __construct() { // приватный конструктор ограничивает реализацию class()
         $this->database = Get::config('database'); // конфигурации базы данных
         $this->architecture = Get::config('architecture'); // архитектура приложения
     }
@@ -41,9 +41,9 @@ class Configs // ПП singleton
     /**
      * Getting self class object
      *
-     * @return Configs|null
+     * @return Config|null
      */
-    static public function getInstance()
+    static public function class()
     {
         if(is_null(self::$instance)) {
             self::$instance = new self();

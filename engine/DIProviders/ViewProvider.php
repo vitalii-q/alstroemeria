@@ -4,7 +4,7 @@ namespace engine\DIProviders;
 
 use engine\DIModules\View\View;
 use engine\Foundation\Services;
-use engine\Helper\Get\Configs;
+use engine\Helper\Get\Config;
 
 class ViewProvider extends ModuleProvider
 {
@@ -20,7 +20,7 @@ class ViewProvider extends ModuleProvider
      */
     public function init()
     {
-        $config = Configs::getInstance()->get('arch');
+        $config = Config::class()->get('arch');
 
         // наполняем модуль View сервисами
         $services = new Services();
