@@ -2,7 +2,7 @@
 
 namespace engine\Modules;
 
-class Log // ПП singleton // solid SRP
+class Log // solid SRP - Принцип единственной обязанности / Single Responsibility Principle
 {
     /**
      * TODO: удаление старых логов на крон
