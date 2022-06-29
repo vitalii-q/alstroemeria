@@ -17,6 +17,11 @@ class Config // ПП singleton
     private $architecture;
 
     /**
+     * @var mixed
+     */
+    private $queue;
+
+    /**
      * @var null
      */
     private static $instance = null;
@@ -29,6 +34,7 @@ class Config // ПП singleton
     private function __construct() { // приватный конструктор ограничивает реализацию class()
         $this->database = Get::config('database'); // конфигурации базы данных
         $this->architecture = Get::config('architecture'); // архитектура приложения
+        $this->queue = Get::config('queue'); // конфигурации очередей
     }
 
     /**
@@ -60,8 +66,9 @@ class Config // ПП singleton
     public function get($config)
     {
         switch ($config) {
-            case ('arch'): return $this->architecture;
             case('database'): return $this->database;
+            case('arch'): return $this->architecture;
+            case('queue'): return $this->queue;
         }
     }
 }
