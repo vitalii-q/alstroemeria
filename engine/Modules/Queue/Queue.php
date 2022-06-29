@@ -22,6 +22,8 @@ class Queue
             self::$worker = $mediator->getWorker();
         }
 
+        self::$worker->checkWorker(); // проверка подключения воркера
+
         self::setJob($job);
 
         return self::$class;

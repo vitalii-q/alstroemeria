@@ -6,7 +6,8 @@ use engine\Interfaces\IMail;
 use engine\Modules\Mails\Message;
 use engine\Modules\Mails\Subscription;
 
-class Mail // OCP - Принцип открытости | закрытости / Open Closed Principle
+class Mail
+// OCP - Принцип открытости | закрытости / Open Closed Principle
 {
     private static $class;
 
@@ -33,7 +34,7 @@ class Mail // OCP - Принцип открытости | закрытости /
         self::send(new Subscription($address));
     }
 
-    public function send(IMail $mail)
+    public function send(IMail $mail) // DIP - Принцип инверсии зависимостей / The Dependency Inversion Principle
     {
         var_dump($mail->create());
 

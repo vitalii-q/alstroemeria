@@ -2,7 +2,10 @@
 
 namespace engine\Modules\Queue;
 
-class Basic
+use engine\Modules\Queue\Interfaces\JobChecker;
+
+class Basic implements JobChecker
+// ISP - Принцип разделения интерфейса / The Interface Segregation Principle
 {
     /**
      * @var mixed|null
@@ -18,12 +21,12 @@ class Basic
     }
 
     /**
-     * Worker plug
+     * Checking connected worker
      *
      * @return mixed
      * @throws \Exception
      */
-    public function handle()
+    public function checkWorker()
     {
         throw new \Exception('<strong>Error: </strong>queue worker is not set<br>');
     }
