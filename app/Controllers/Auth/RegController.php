@@ -3,7 +3,7 @@
 namespace app\Controllers\Auth;
 
 use engine\Foundation\Controller;
-use Models\User;
+use app\Models\User;
 
 class RegController extends Controller
 {

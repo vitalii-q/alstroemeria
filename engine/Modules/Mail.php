@@ -3,7 +3,7 @@
 namespace engine\Modules;
 
 use engine\Helper\Env;
-use engine\Interfaces\IMail;
+use engine\Contracts\IMail;
 use engine\Modules\Mails\Message;
 use engine\Modules\Mails\Subscription;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace engine\Interfaces;
+namespace engine\Contracts;
 
 interface IMail
 {

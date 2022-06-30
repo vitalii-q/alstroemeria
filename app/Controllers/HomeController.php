@@ -1,6 +1,7 @@
 <?php
 namespace app\Controllers;
 
+use engine\Factory\StaticFactory\UserFactory;
 use engine\Foundation\Controller;
 use app\Models\Department;
 use engine\Modules\Mail;
@@ -10,10 +11,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // test
         //Queue::dispatch('test', 'redis');
-
         //Mail::class()->subscription('human@mail.ru');
+
+        //$user = UserFactory::make('Alex', 'alex@mail.ru', 'IT', 'admin');
+
+
 
         //var_dump();
 

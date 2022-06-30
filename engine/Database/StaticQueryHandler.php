@@ -7,6 +7,7 @@ trait StaticQueryHandler
     /**
      * Sql static query handler
      *
+     * TODO: проверка полей на уникальность (email)
      * TODO: Обернуть в try catch
      */
 

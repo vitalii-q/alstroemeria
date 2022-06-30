@@ -2,7 +2,7 @@
 
 namespace engine\Modules\Mails;
 
-use engine\Interfaces\IMail;
+use engine\Contracts\IMail;
 
 class Message implements IMail
 {
