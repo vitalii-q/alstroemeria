@@ -2,26 +2,35 @@
 
 namespace engine\Modules;
 
+use engine\Helper\Env;
 use engine\Interfaces\IMail;
 use engine\Modules\Mails\Message;
 use engine\Modules\Mails\Subscription;
 
-class Mail
+class Mail // multiton
 // OCP - Принцип открытости | закрытости / Open Closed Principle
 {
-    private static $class;
+    private static $class = [];
 
-    private function __construct() {}
+    private $driver; // драйвер текущего экземпляра класса
+
+    private function __construct($driver) {
+        $this->driver = $driver;
+    }
 
     private function __clone() {}
 
-    public static function class()
+    public static function class($driver = null)
     {
-        if(is_null(self::$class)) {
-            self::$class = new self;
+        if(!$driver) {
+            $driver = Env::get('MAIL_DRIVER'); // основной драйвер
         }
 
-        return self::$class;
+        if(!isset(self::$class[$driver])) {
+            self::$class[$driver] = new self($driver);
+        }
+
+        return self::$class[$driver];
     }
 
     public function message($address)
@@ -37,6 +46,7 @@ class Mail
     public function send(IMail $mail) // DIP - Принцип инверсии зависимостей / The Dependency Inversion Principle
     {
         var_dump($mail->create());
+        var_dump('Driver: ' . $this->driver);
 
         // Mail sending ...
     }

@@ -11,9 +11,11 @@ class HomeController extends Controller
     public function index()
     {
         // test
-        //Queue::dispatch('test');
+        //Queue::dispatch('test', 'redis');
 
-        // Mail::class()->subscription('human@mail.ru');
+        //Mail::class()->subscription('human@mail.ru');
+
+        //var_dump();
 
         $department = Department::get();
 

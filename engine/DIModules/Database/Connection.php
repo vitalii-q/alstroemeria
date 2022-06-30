@@ -34,7 +34,7 @@ class Connection
 
             $this->link = new \PDO($link, $config['username'], $config['password']);
         } catch (\PDOException $e) {
-            Log::class()->logging($e->getMessage());
+            Log::class('sql')->logging($e->getMessage());
             print "Error!: " . $e->getMessage();
             die();
         }
