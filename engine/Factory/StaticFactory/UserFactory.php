@@ -2,8 +2,6 @@
 
 namespace engine\Factory\StaticFactory;
 
-use app\Models\Department;
-use app\Models\DepartmentUser;
 use app\Models\User;
 
 class UserFactory // ПП Static Factory / Статическая фабрика

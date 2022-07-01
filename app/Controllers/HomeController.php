@@ -1,6 +1,8 @@
 <?php
 namespace app\Controllers;
 
+use engine\Factory\FactoryMethod\Save\FileSaveFactory;
+use engine\Factory\FactoryMethod\Save\MySQLSaveFactory;
 use engine\Factory\StaticFactory\UserFactory;
 use engine\Foundation\Controller;
 use app\Models\Department;
@@ -16,7 +18,8 @@ class HomeController extends Controller
 
         //$user = UserFactory::make('Alex', 'alex@mail.ru', 'IT', 'admin');
 
-
+        //$saver = new MySQLSaveFactory();
+        //$saver->createSaver()->save('iPhone', '89000');
 
         //var_dump();
 
