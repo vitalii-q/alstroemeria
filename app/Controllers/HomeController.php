@@ -1,6 +1,8 @@
 <?php
 namespace app\Controllers;
 
+use engine\Factory\Database\MySQLDBFactory;
+use engine\Factory\Database\SQLiteDBFactory;
 use engine\Factory\FactoryMethod\Save\FileSaveFactory;
 use engine\Factory\FactoryMethod\Save\MySQLSaveFactory;
 use engine\Factory\StaticFactory\UserFactory;
@@ -20,6 +22,14 @@ class HomeController extends Controller
 
         //$saver = new MySQLSaveFactory();
         //$saver->createSaver()->save('iPhone', '89000');
+
+        //$saver = new MySQLSaveFactory();
+        //$saver->query()->execute();
+
+        /*FQueryCreate(new MySQLDBFactory('product', [
+            'name' => 'iPhone',
+            'price' => '99000'
+        ]));*/
 
         //var_dump();
 
