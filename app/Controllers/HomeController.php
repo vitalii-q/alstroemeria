@@ -1,6 +1,8 @@
 <?php
 namespace app\Controllers;
 
+use app\Models\User;
+use engine\Database\QB;
 use engine\Factory\Database\MySQLDBFactory;
 use engine\Factory\Database\SQLiteDBFactory;
 use engine\Factory\FactoryMethod\Save\FileSaveFactory;
@@ -30,6 +32,7 @@ class HomeController extends Controller
             'name' => 'iPhone',
             'price' => '99000'
         ]));*/
+
 
         //var_dump();
 

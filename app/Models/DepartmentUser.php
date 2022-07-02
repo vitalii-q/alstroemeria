@@ -2,11 +2,11 @@
 
 namespace app\Models;
 
-use engine\Database\StaticQueryHandler;
+use engine\Database\StaticQueryBuilder;
 
 class DepartmentUser
 {
-    use StaticQueryHandler;
+    use StaticQueryBuilder;
 
     /**
      * table name variable

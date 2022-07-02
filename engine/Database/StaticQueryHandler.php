@@ -2,108 +2,116 @@
 
 namespace engine\Database;
 
-trait StaticQueryHandler
+use engine\DIModules\Database\Connection;
+
+final class StaticQueryHandler
 {
     /**
-     * Sql static query handler
-     *
-     * TODO: проверка полей на уникальность (email)
-     * TODO: Обернуть в try catch
+     * @var string $sql SQL-запрос.
      */
+    private $query;
 
     /**
-     * @param array $fields
-     * @return mixed
+     * @var
      */
-    static public function create(array $fields)
-    {
-        /* format
-        User::create([
-            'email' => 'test1',
-            'password' => 'test2'
-        ]);*/
+    private $table;
 
-        $qb = new StaticQueryBuilder(self::$table);
-        $qb->insert($fields);
-        return $qb->execute()['lastInsertID']; // возвращаем ID
+    /**
+     * Query builder constructor
+     */
+    public function __construct($table)
+    {
+        $this->table = $table;
+        $this->query = '';
     }
 
     /**
-     * @param $id
-     * @param array $fields
-     * @return mixed
+     * @param string $select
+     * @return void
      */
-    static public function update($id, array $fields)
+    public function get($select = '*')
     {
-        /* format
-        $users = User::update(4, [
-            'email' => 'test1',
-            'password' => 'test2'
-        ]);*/
-
-        $qb = new StaticQueryBuilder(self::$table);
-        $qb->update($id, $fields);
-        return $qb->execute()['lastInsertID']; // возвращаем ID
-    }
-
-    /**
-     * @return mixed
-     */
-    static public function get()
-    {
-        /* format
-        $users = User::get();*/
-
-        $qb = new StaticQueryBuilder(self::$table);
-        $qb->get();
-        return $qb->execute()['result'];
+        $this->query .= 'SELECT ' . $select . ' FROM ' . $this->table;
     }
 
     /**
      * @param $field
-     * @param $condition
+     * @param mixed $condition
      * @param $operator
-     * @return mixed
+     * @return void
      */
-    static public function where($field, $condition, $operator = '=')
+    public function where($field, $value, $operator = '=')
     {
-        /* format
-        $users = User::where('id', 8, '>');*/
+        $this->query .= ' WHERE ' . $field. $operator . '"' . $value . '"';
+    }
 
-        $qb = new StaticQueryBuilder(self::$table);
-        $qb->get();
-        $qb->where($field, $condition, $operator);
-        return $qb->execute()['result'];
+    /**
+     * TODO: добавить массовое добавление
+     *
+     * @param $fields
+     * @return void
+     */
+    public function insert($fields)
+    {
+        $this->query .= 'INSERT INTO ' . $this->table . '(';
+        $keys = ''; $values = '';
+
+        for ($i = 0; $i < count($fields); $i++) {
+            $keys .= array_keys($fields)[$i]; // достаем ключи массива
+            $values .= "'" . array_values($fields)[$i] . "'"; // нумеруем массив и достаем его значения
+            if($i < count($fields)-1) {
+                $keys .= ', '; $values .= ', ';
+            }
+        }
+        $this->query .= $keys . ') values (' . $values . ')';
     }
 
     /**
      * @param $id
-     * @return mixed
+     * @param $fields
+     * @return void
      */
-    static public function find($id)
+    public function update($id, $fields)
     {
-        /*format
-        $users = User::find(1);*/
+        $this->query .= 'UPDATE ' . $this->table . ' SET ';
 
-        $qb = new StaticQueryBuilder(self::$table);
-        $qb->get();
-        $qb->where('id', $id);
-        return $qb->execute()['result'][0];
+        $i = 0; foreach ($fields as $key => $value) {
+            $this->query .= $key . ' = "' . $value . '" ';
+
+            if(count($fields)-1 > $i) {
+                $this->query .= ', ';
+            } $i++;
+        }
+
+        $this->query .= ' WHERE id = ' . $id;
     }
 
     /**
      * @param $ids
-     * @return mixed
+     * @return void
      */
-    static public function delete($ids)
+    public function delete($ids) {
+        $this->query .= 'DELETE FROM ' . $this->table . ' WHERE ';
+        $i = 0; foreach ($ids as $id) {
+            $this->query .= 'id = ' . $id . ' ';
+
+            if(count($ids)-1 > $i) {
+                $this->query .= 'OR ';
+            } $i++;
+        }
+    }
+
+    /**
+     * Query execution sql function
+     *
+     * @return array
+     */
+    public function execute() // : string сделает обязательным возвращением функцией строки
     {
-        /* format
-        $users = User::delete([9, 13]);*/
+        $connection = new Connection();
+        $result = $connection->query($this->query . ';');
+        $lastInsertID = $connection->lastInsertID();
 
-        if(!is_array($ids)) { $ids = [$ids];} // если один, преобразовываем в массив
-
-        $qb = new StaticQueryBuilder(self::$table);
-        $qb->delete($ids);
-        return $qb->execute()['result'];
+        return ['result' => $result, 'lastInsertID' => $lastInsertID];
     }
 }

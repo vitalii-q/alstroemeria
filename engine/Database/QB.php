@@ -4,7 +4,7 @@ namespace engine\Database;
 
 use engine\DIModules\Database\Connection;
 
-class QB
+class QB // ПП Builder / Строитель
 {
     /**
      * SQL Query Builder
@@ -100,12 +100,22 @@ class QB
      * @param $operator
      * @return $this
      */
-    public function where($field, $condition, $operator = '=')
+    public function where($field, $param_1, $param_2 = '=')
     {
-        if($condition == null or $condition == '') { // если пустое значение
+        //list($value, $operator) = $this->argsFormation($param_1, $param_2);
+
+        if(func_num_args() > 2) { // количество переданных в функцию параметров
+            $operator = $param_1;
+            $value    = $param_2;
+        } else {
+            $operator = $param_2;
+            $value    = $param_1;
+        }
+
+        if($value == null or $value == '') { // если пустое значение
             $combine = ' IS NULL';
         } else {
-            $combine = $operator . '"' .$condition . '"';
+            $combine = $operator . '"' . $value . '"';
         }
 
         if(!$this->where) {
@@ -124,14 +134,24 @@ class QB
      * @param $operator
      * @return $this
      */
-    public function orWhere($field, $condition, $operator = '=') {
-        if($condition == null or $condition == '') { // если пустое значение
-            $combine = ' IS NULL';
+    public function orWhere($field, $param_1, $param_2 = '=') {
+        //list($value, $operator) = $this->argsFormation($param_1, $param_2);
+
+        if(func_num_args() > 2) { // количество переданных в функцию параметров
+            $operator = $param_1;
+            $value    = $param_2;
         } else {
-            $combine = $operator . '"' .$condition . '"';
+            $operator = $param_2;
+            $value    = $param_1;
         }
 
-        $this->query .= ' OR ' . $field. $combine;
+        if($value == null or $value == '') { // если пустое значение
+            $combine = ' IS NULL';
+        } else {
+            $combine = $operator . '"' . $value . '"';
+        }
+
+        $this->query .= ' OR ' . $field . $combine;
 
         return $this;
     }
@@ -231,6 +251,8 @@ class QB
             $query = 'UPDATE ' . $this->table . $this->update . $query;
         }
 
+        var_dump($query);
+
         $connection = new Connection();
         $result = $connection->query($query);
         $lastInsertID = $connection->lastInsertID(); // ID последнего созданного элемента
@@ -263,6 +285,19 @@ class QB
                 return $result[0];
             }
         }
+    }
+
+    protected static function argsFormation($param_1, $param_2)
+    {
+        if(func_num_args() > 2) { // количество переданных в функцию параметров
+            $operator = $param_1;
+            $value    = $param_2;
+        } else {
+            $operator = $param_2;
+            $value    = $param_1;
+        }
+
+        return [$value, $operator];
     }
 
     /**

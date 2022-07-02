@@ -2,11 +2,11 @@
 namespace app\Models;
 
 use engine\Contracts\Factory\IUser;
-use engine\Database\StaticQueryHandler;
+use engine\Database\StaticQueryBuilder;
 
 class User implements IUser
 {
-    use StaticQueryHandler;
+    use StaticQueryBuilder;
 
     /**
      * Users table name variable
