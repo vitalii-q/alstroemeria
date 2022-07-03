@@ -7,7 +7,7 @@
  */
 
 require_once __DIR__ . "/../vendor/autoload.php"; // __DIR__ директория этого файла
-require_once __DIR__ . "/../engine/Support/functions.php"; // общие функции
+require_once __DIR__ . "/../config/inserts.php"; // включаемые файлы
 
 use engine\DI;
 use engine\App;

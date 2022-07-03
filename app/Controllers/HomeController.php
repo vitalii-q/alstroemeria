@@ -1,6 +1,8 @@
 <?php
 namespace app\Controllers;
 
+use app\Models\DepartmentUser;
+use app\Models\Product;
 use app\Models\User;
 use engine\Database\QB;
 use engine\Factory\Database\MySQLDBFactory;
@@ -33,14 +35,26 @@ class HomeController extends Controller
             'price' => '99000'
         ]));*/
 
+        $product = Product::get();
+
+
+        var_dump($product);
+
+
+
+
+        //$product_2 = clone $product;
+       // var_dump($product_2);
+
 
         //var_dump();
 
-        $department = Department::get();
+        //$department = Department::get();
 
         $index = 'home page';
 
-        $this->view->render('index', compact('department', 'index'));
+        $this->view->render('index', compact('index'));
+        //$this->view->render('index', compact('department', 'index'));
     }
 }
 

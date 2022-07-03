@@ -3,15 +3,9 @@
 namespace app\Models;
 
 use engine\Database\StaticQueryBuilder;
+use engine\Modules\Models;
 
-class Department
+class Department extends Models
 {
-    use StaticQueryBuilder;
 
-    /**
-     * Departments table name variable
-     *
-     * @var string
-     */
-    protected static $table = 'department';
 }

@@ -7,6 +7,7 @@ trait StaticQueryBuilder
     /**
      * Sql static query builder
      *
+     * TODO: добавить метод whereIn
      * TODO: проверка полей на уникальность (email)
      * TODO: Обернуть в try catch
      */
@@ -23,7 +24,7 @@ trait StaticQueryBuilder
             'password' => 'test2'
         ]);*/
 
-        $qb = new StaticQueryHandler(self::$table);
+        $qb = new StaticQueryHandler(makeObj(get_called_class())->table);
         $qb->insert($fields);
         return $qb->execute()['lastInsertID']; // возвращаем ID
     }
@@ -41,7 +42,7 @@ trait StaticQueryBuilder
             'password' => 'test2'
         ]);*/
 
-        $qb = new StaticQueryHandler(self::$table);
+        $qb = new StaticQueryHandler(makeObj(get_called_class())->table);
         $qb->update($id, $fields);
         return $qb->execute()['lastInsertID']; // возвращаем ID
     }
@@ -54,9 +55,11 @@ trait StaticQueryBuilder
         /* format
         $users = User::get();*/
 
-        $qb = new StaticQueryHandler(self::$table);
+        $model = makeObj(get_called_class());
+        $qb = new StaticQueryHandler($model->table);
         $qb->get();
-        return $qb->execute()['result'];
+
+        return setModelsAttributes($model, $qb->execute()['result']);
     }
 
     /**
@@ -78,10 +81,12 @@ trait StaticQueryBuilder
             $value    = $param_1;
         }
 
-        $qb = new StaticQueryHandler(self::$table);
+        $model = makeObj(get_called_class());
+        $qb = new StaticQueryHandler($model->table);
         $qb->get();
         $qb->where($field, $value, $operator);
-        return $qb->execute()['result'];
+
+        return setModelsAttributes($model, $qb->execute()['result']);
     }
 
     /**
@@ -93,10 +98,16 @@ trait StaticQueryBuilder
         /*format
         $users = User::find(1);*/
 
-        $qb = new StaticQueryHandler(self::$table);
+        $model = makeObj(get_called_class());
+        $qb = new StaticQueryHandler($model->table);
         $qb->get();
         $qb->where('id', $id);
-        return $qb->execute()['result'][0];
+
+        //var_dump($class);
+        setObjAttributes($model, $qb->execute()['result'][0]); // добавляем аттрибуты в класс
+
+        return $model;
+        //return $qb->execute()['result'][0];
     }
 
     /**
@@ -110,7 +121,7 @@ trait StaticQueryBuilder
 
         if(!is_array($ids)) { $ids = [$ids];} // если один, преобразовываем в массив
 
-        $qb = new StaticQueryHandler(self::$table);
+        $qb = new StaticQueryHandler(makeObj(get_called_class())->table);
         $qb->delete($ids);
         return $qb->execute()['result'];
     }

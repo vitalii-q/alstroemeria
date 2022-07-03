@@ -11,7 +11,7 @@ class QB // ПП Builder / Строитель
      *
      * formats:
      *
-     * ->table('user')
+     * $qb ->table('user')
      * ->join('department_user', 'user.id', 'department_user.user_id')
      * ->join('department', 'department.id', 'department_user.department_id')
      * ->where('department.id', 2)
@@ -19,7 +19,7 @@ class QB // ПП Builder / Строитель
      * ->limit(20)
      * ->exe();
      *
-     * table('user')
+     * $qb->table('user')
      * ->where('email', $request['email'])
      * ->where('password', md5($request['password']))
      * ->update(['hash', $hash])->exe();
@@ -194,7 +194,7 @@ class QB // ПП Builder / Строитель
     public function find($id)
     {
         $this->query = ''; // сбрасываем запрос
-        $this->query .= ' FROM ' . $this->table . ' WHERE id = ' . $id;
+        $this->query .= ' WHERE id = ' . $id;
         $this->find = true;
 
         return $this;
@@ -239,6 +239,7 @@ class QB // ПП Builder / Строитель
     public function exe() // execute // : string сделает обязательным возвращением функцией строки
     {
         $query = $this->query  . ';';
+
         if(!$this->update) { // если в запросе не указан update
 
             if(!$this->select) { // если в запросе не указан select
@@ -251,7 +252,7 @@ class QB // ПП Builder / Строитель
             $query = 'UPDATE ' . $this->table . $this->update . $query;
         }
 
-        var_dump($query);
+        //var_dump($query);
 
         $connection = new Connection();
         $result = $connection->query($query);
