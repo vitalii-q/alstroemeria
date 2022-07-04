@@ -103,11 +103,8 @@ trait StaticQueryBuilder
         $qb->get();
         $qb->where('id', $id);
 
-        //var_dump($class);
         setObjAttributes($model, $qb->execute()['result'][0]); // добавляем аттрибуты в класс
-
         return $model;
-        //return $qb->execute()['result'][0];
     }
 
     /**

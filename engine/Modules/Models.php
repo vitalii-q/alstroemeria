@@ -28,4 +28,24 @@ abstract class Models
     {
         $this->attributes = $attributes;
     }
+
+    public function setAttribute($property, $value)
+    {
+        $this->attributes[$property] = $value;
+    }
+
+    public function save()
+    {
+        unset($this->attributes['id']);
+        unset($this->attributes['created_at']);
+        unset($this->attributes['updated_at']);
+
+        foreach ($this->attributes as $key => $attribute) {
+            if (!$attribute) {
+                unset($this->attributes[$key]);
+            }
+        }
+
+        $this::create($this->attributes);
+    }
 }

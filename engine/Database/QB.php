@@ -9,6 +9,8 @@ class QB // ПП Builder / Строитель
     /**
      * SQL Query Builder
      *
+     * TODO: insert
+     *
      * formats:
      *
      * $qb ->table('user')
