@@ -108,7 +108,6 @@ final class StaticQueryHandler
      */
     public function execute() // : string сделает обязательным возвращением функцией строки
     {
-        var_dump($this->query);
         $connection = new Connection();
         $result = $connection->query($this->query . ';');
         $lastInsertID = $connection->lastInsertID();
