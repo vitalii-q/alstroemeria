@@ -12,7 +12,8 @@ class UserFactory // ПП Static Factory / Статическая фабрика
     {
         self::$fabricated++;
 
-        return new User($name, $email, $role);
+        $user = new User();
+        return $user->makeUser($name, $email, $role);
     }
 
     public static function fabricated(): int // получить колличество сфабрикованных пользователей

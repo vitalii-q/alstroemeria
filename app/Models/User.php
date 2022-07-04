@@ -3,43 +3,16 @@ namespace app\Models;
 
 use engine\Contracts\Factory\IUser;
 use engine\Database\StaticQueryBuilder;
+use engine\Modules\Models;
 
-class User implements IUser
+class User extends Models implements IUser
 {
-    use StaticQueryBuilder;
-
-    /**
-     * Users table name variable
-     *
-     * @var string
-     */
-    protected static $table = 'user';
-
-    protected $name;
-
-    protected $email;
-
-    protected $role;
-
-    public function __construct($name, $email, $role = 'user')
+    public function makeUser($name, $email, $role = 'user')
     {
-        $this->name = $name;
-        $this->email = $email;
-        $this->role = $role;
-    }
+        $this->setAttribute('name', $name);
+        $this->setAttribute('email', $email);
+        $this->setAttribute( 'role', $role);
 
-    public function getName(): float
-    {
-        return $this->name;
-    }
-
-    public function getEmail(): float
-    {
-        return $this->email;
-    }
-
-    public function getRole(): float
-    {
-        return $this->role;
+        return $this;
     }
 }

@@ -35,18 +35,6 @@ class HomeController extends Controller
             'price' => '99000'
         ]));*/
 
-        $product = Product::find(1);
-
-        $product_2 = clone $product;
-        $product_2->save();
-
-        var_dump($product_2);
-
-
-
-
-        //$product_2 = clone $product;
-       // var_dump($product_2);
 
 
         //var_dump();
