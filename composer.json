@@ -18,7 +18,10 @@
             "app\\Models\\": "app/Models",
             "app\\Services\\": "app/Services",
             "app\\Suppliers\\": "app/Suppliers",
-            "app\\Middleware\\": "app/Middleware"
+            "app\\Middleware\\": "app/Middleware",
+            "app\\Providers\\": "app/Providers",
+            "app\\Events\\": "app/Events",
+            "app\\Listeners\\": "app/Listeners"
         }
     }
 }

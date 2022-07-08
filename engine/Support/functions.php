@@ -1,5 +1,12 @@
 <?php
 
+function event($event) {
+    /* format
+    event(new NewUser('userya@mail.ru')); */
+
+    \engine\Modules\Observer::class()->event($event);
+}
+
 // ПП Abstract Factory / Абстрактная фабрика
 function FQueryCreate(\engine\Contracts\Factory\Database\IDatabaseFactory $factory)
 {

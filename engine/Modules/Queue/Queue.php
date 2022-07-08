@@ -12,7 +12,7 @@ class Queue
 
     private function __clone() {}
 
-    public static function dispatch($job) {
+    public static function dispatch($job) { // функционал app/Jobs не настроен TODO: закончить
         if(is_null(self::$class)) {
             self::$class = new self;
         }

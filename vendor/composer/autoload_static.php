@@ -16,8 +16,11 @@ class ComposerStaticInit2b77a795eaeab80949117bdab38a1617
         array (
             'app\\Suppliers\\' => 14,
             'app\\Services\\' => 13,
+            'app\\Providers\\' => 14,
             'app\\Models\\' => 11,
             'app\\Middleware\\' => 15,
+            'app\\Listeners\\' => 14,
+            'app\\Events\\' => 11,
             'app\\Controllers\\' => 16,
         ),
     );
@@ -39,6 +42,10 @@ class ComposerStaticInit2b77a795eaeab80949117bdab38a1617
         array (
             0 => __DIR__ . '/../..' . '/app/Services',
         ),
+        'app\\Providers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/Providers',
+        ),
         'app\\Models\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app/Models',
@@ -47,10 +54,22 @@ class ComposerStaticInit2b77a795eaeab80949117bdab38a1617
         array (
             0 => __DIR__ . '/../..' . '/app/Middleware',
         ),
+        'app\\Listeners\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/Listeners',
+        ),
+        'app\\Events\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/Events',
+        ),
         'app\\Controllers\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app/Controllers',
         ),
+    );
+
+    public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -58,6 +77,7 @@ class ComposerStaticInit2b77a795eaeab80949117bdab38a1617
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit2b77a795eaeab80949117bdab38a1617::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit2b77a795eaeab80949117bdab38a1617::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit2b77a795eaeab80949117bdab38a1617::$classMap;
 
         }, null, ClassLoader::class);
     }

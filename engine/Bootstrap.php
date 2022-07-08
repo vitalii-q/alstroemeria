@@ -7,7 +7,10 @@
  */
 
 require_once __DIR__ . "/../vendor/autoload.php"; // __DIR__ директория этого файла
+
 require_once __DIR__ . "/../config/inserts.php"; // включаемые файлы
+
+\engine\Modules\Observer::class();
 
 use engine\DI;
 use engine\App;

@@ -1,6 +1,7 @@
 <?php
 namespace app\Controllers;
 
+use app\Events\NewUser;
 use app\Models\DepartmentUser;
 use app\Models\Product;
 use app\Models\User;
@@ -34,6 +35,7 @@ class HomeController extends Controller
             'name' => 'iPhone',
             'price' => '99000'
         ]));*/
+
 
 
 
