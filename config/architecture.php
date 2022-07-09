@@ -19,6 +19,6 @@ return [
     ],
 
     'Middleware' => [
-        'Auth' => app\Middleware\Auth::class,
+        'AuthFacade' => app\Middleware\Auth::class,
     ]
 ];

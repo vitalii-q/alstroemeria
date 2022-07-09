@@ -4,13 +4,13 @@
  */
 
 /**
- * TODO: групирование роутов $this->router->group(['middleware' => 'Auth', 'prefix' => 'admin'], [...]);
+ * TODO: групирование роутов $this->router->group(['middleware' => 'AuthFacade', 'prefix' => 'admin'], [...]);
  */
 
-/*$this->router->group(['middleware' => 'Auth', 'prefix' => 'admin'], [
-    ['login', '/login', 'Auth\LoginController:index'],
-    ['login', '/login', 'Auth\LoginController:index'],
-    ['login', '/login', 'Auth\LoginController:index'],
+/*$this->router->group(['middleware' => 'AuthFacade', 'prefix' => 'admin'], [
+    ['login', '/login', 'AuthFacade\LoginController:index'],
+    ['login', '/login', 'AuthFacade\LoginController:index'],
+    ['login', '/login', 'AuthFacade\LoginController:index'],
 ]);*/
 
 // auth

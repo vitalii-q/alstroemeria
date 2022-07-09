@@ -4,6 +4,8 @@ namespace app\Controllers\Auth;
 
 use engine\Foundation\Controller;
 use app\Models\User;
+use engine\Modules\Auth;
+use engine\Support\Facades\AuthFacade;
 
 class RegController extends Controller
 {
@@ -12,12 +14,8 @@ class RegController extends Controller
     }
 
     public function registration($request) {
-        if(!User::where('email', $request['email'])) {
-            User::create([
-                'email' => $request['email'],
-                'password' => md5($request['password'])
-            ]);
-        }
+        $auth = new AuthFacade(new Auth());
+        $auth->reg($request['email'], $request['password']);
     }
 }
 
