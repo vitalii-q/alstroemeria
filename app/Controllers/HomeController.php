@@ -36,7 +36,7 @@ class HomeController extends Controller
             'price' => '99000'
         ]));*/
 
-
+        
 
 
         //var_dump();

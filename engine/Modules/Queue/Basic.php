@@ -26,7 +26,7 @@ class Basic implements JobChecker
      * @return mixed
      * @throws \Exception
      */
-    public function checkWorker()
+    public function checkWorker() // метод NullObject
     {
         throw new \Exception('<strong>Error: </strong>queue worker is not set<br>');
     }
