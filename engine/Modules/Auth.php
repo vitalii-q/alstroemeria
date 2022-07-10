@@ -8,13 +8,29 @@ use engine\Helper\Cookie;
 
 class Auth
 {
+    /**
+     * Query builder variable
+     *
+     * @var QB
+     */
     protected $qb;
 
+    /**
+     * Construct query builder
+     */
     public function __construct()
     {
         $this->qb = new QB();
     }
 
+    /**
+     * User existence check
+     *
+     * @param $email
+     * @param $password
+     * @return bool
+     * @throws \Exception
+     */
     public function userCheck($email, $password)
     {
         $user = $this->qb->table('user')
@@ -29,6 +45,13 @@ class Auth
         return true;
     }
 
+    /**
+     * User registration
+     *
+     * @param $email
+     * @param $password
+     * @return void
+     */
     public function reg($email, $password)
     {
         User::create([
@@ -37,11 +60,24 @@ class Auth
         ]);
     }
 
+    /**
+     * Notification for user about registration
+     *
+     * @return void
+     */
     public function regNotification()
     {
         // reg notification ...
     }
 
+    /**
+     * User authentication
+     *
+     * @param $email
+     * @param $password
+     * @return bool
+     * @throws \Exception
+     */
     public function login($email, $password)
     {
         $hash = md5($email . $password . (string)rand(10000000, 99999999));
@@ -56,6 +92,11 @@ class Auth
         return true;
     }
 
+    /**
+     * User un authentication
+     *
+     * @return bool
+     */
     public function logout()
     {
         if(Cookie::get('auth')) {
@@ -65,6 +106,11 @@ class Auth
         return false;
     }
 
+    /**
+     * Redirect user to ...
+     *
+     * @return void
+     */
     public function redirect()
     {
         // redirect to ...

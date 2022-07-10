@@ -12,9 +12,6 @@ class LoginController extends Controller
         $this->view->render('auth/login');
     }
 
-    /**
-     * @throws \Exception
-     */
     public function login($request) {
         $auth = new AuthFacade(new Auth());
         $auth->login($request['email'], $request['password']);
