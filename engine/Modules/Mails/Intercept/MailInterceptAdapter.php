@@ -6,18 +6,38 @@ use engine\Contracts\IMail;
 
 class MailInterceptAdapter implements IMail // ПП Adapter
 {
+    /**
+     * Interceptor
+     *
+     * @var MailIntercept
+     */
     protected $interceptClass;
 
-    protected $adress;
+    /**
+     * mail address for massage
+     *
+     * @var
+     */
+    protected $address;
 
+    /**
+     * Construct mail intercept class
+     *
+     * @param $address
+     */
     public function __construct($address)
     {
         $this->interceptClass = new MailIntercept();
-        $this->adress = $address;
+        $this->address = $address;
     }
 
+    /**
+     * Adapting for mail intercept
+     *
+     * @return string
+     */
     public function create()
     {
-        return $this->interceptClass->intercept($this->adress);
+        return $this->interceptClass->intercept($this->address);
     }
 }
