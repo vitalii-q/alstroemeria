@@ -21,7 +21,7 @@ class HomeController extends Controller
     public function index()
     {
         //Queue::dispatch('test', 'redis');
-        //Mail::class()->subscription('human@mail.ru');
+        //MailIntercept::class()->subscription('human@mail.ru');
 
         //$user = UserFactory::make('Alex', 'alex@mail.ru', 'IT', 'admin');
 
@@ -36,9 +36,7 @@ class HomeController extends Controller
             'price' => '99000'
         ]));*/
 
-        /**
-         * Facade phpdoc
-         */
+        Mail::class()->intercept('mail@mail.ru');
 
 
         //var_dump();

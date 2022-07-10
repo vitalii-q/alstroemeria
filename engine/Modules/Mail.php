@@ -4,10 +4,12 @@ namespace engine\Modules;
 
 use engine\Helper\Env;
 use engine\Contracts\IMail;
+use engine\Modules\Mails\Intercept\MailIntercept;
+use engine\Modules\Mails\Intercept\MailInterceptAdapter;
 use engine\Modules\Mails\Message;
 use engine\Modules\Mails\Subscription;
 
-class Mail // multiton
+class Mail // ПП multiton
 // OCP - Принцип открытости | закрытости / Open Closed Principle
 {
     private static $class = [];
@@ -43,11 +45,16 @@ class Mail // multiton
         self::send(new Subscription($address));
     }
 
+    public function intercept($address)
+    {
+        self::send(new MailInterceptAdapter($address));
+    }
+
     public function send(IMail $mail) // DIP - Принцип инверсии зависимостей / The Dependency Inversion Principle
     {
         var_dump($mail->create());
         var_dump('Driver: ' . $this->driver);
 
-        // Mail sending ...
+        // MailIntercept sending ...
     }
 }
