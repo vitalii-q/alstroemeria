@@ -13,6 +13,8 @@ use engine\Factory\FactoryMethod\Save\MySQLSaveFactory;
 use engine\Factory\StaticFactory\UserFactory;
 use engine\Foundation\Controller;
 use app\Models\Department;
+use engine\Modules\Cart\Offer;
+use engine\Modules\Cart\Sale;
 use engine\Modules\Mail;
 use engine\Modules\Queue\Queue;
 
@@ -36,7 +38,8 @@ class HomeController extends Controller
             'price' => '99000'
         ]));*/
 
-        Mail::class()->intercept('mail@mail.ru');
+
+
 
 
         //var_dump();
