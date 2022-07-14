@@ -40,7 +40,6 @@ class HomeController extends Controller
 
 
 
-
         //$department = Department::get();
 
         $index = 'home page';
