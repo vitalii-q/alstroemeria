@@ -41,9 +41,6 @@ class HomeController extends Controller
 
 
 
-
-        //var_dump();
-
         //$department = Department::get();
 
         $index = 'home page';
