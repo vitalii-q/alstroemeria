@@ -13,6 +13,7 @@ use engine\Factory\FactoryMethod\Save\MySQLSaveFactory;
 use engine\Factory\StaticFactory\UserFactory;
 use engine\Foundation\Controller;
 use app\Models\Department;
+use engine\Helper\Session;
 use engine\Modules\Cart\Offer;
 use engine\Modules\Cart\Sale;
 use engine\Modules\Mail;

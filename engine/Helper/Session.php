@@ -28,9 +28,7 @@ class Session
 
                 $_SESSION[$pathExp[0]] = $value;
             } else {
-                var_dump($_SESSION);
-                var_dump($_SESSION[$pathExp[0]]);
-                array_push($_SESSION[$pathExp[0]], []);
+                $_SESSION[$pathExp[0]] = [];
             }
         }
         if(count($pathExp) >= 2 and (!is_array($_SESSION[$pathExp[0]]) or
@@ -47,7 +45,7 @@ class Session
                     $_SESSION[$pathExp[0]] = [];
                 }
 
-                array_push($_SESSION[$pathExp[0]][$pathExp[1]], []);
+                $_SESSION[$pathExp[0]][$pathExp[1]] = [];
             }
         }
         if(count($pathExp) >= 3 and (!is_array($_SESSION[$pathExp[0]][$pathExp[1]]) or
@@ -64,7 +62,7 @@ class Session
                     $_SESSION[$pathExp[0]][$pathExp[1]] = [];
                 }
 
-                array_push($_SESSION[$pathExp[0]][$pathExp[1]][$pathExp[2]], []);
+                $_SESSION[$pathExp[0]][$pathExp[1]][$pathExp[2]] = [];
             }
         }
         if(count($pathExp) >= 4 and (!is_array($_SESSION[$pathExp[0]][$pathExp[1]][$pathExp[2]]) or
@@ -77,7 +75,7 @@ class Session
 
                 $_SESSION[$pathExp[0]][$pathExp[1]][$pathExp[2]][$pathExp[3]] = $value;
             } else {
-                array_push($_SESSION[$pathExp[0]][$pathExp[1]][$pathExp[2]][$pathExp[3]], $value);
+                $_SESSION[$pathExp[0]][$pathExp[1]][$pathExp[2]][$pathExp[3]] = $value;
             }
         }
 
