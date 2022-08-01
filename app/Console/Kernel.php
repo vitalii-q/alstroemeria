@@ -2,5 +2,8 @@
 
 class Kernel
 {
+    public function schedule()
+    {
 
+    }
 }

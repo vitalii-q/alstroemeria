@@ -1,6 +1,9 @@
 #!/usr/bin/env php
 <?php
-//require __DIR__.'/vendor/autoload.php';
-$argv = $_SERVER['argv'];
+require __DIR__.'/vendor/autoload.php';
 
-var_dump($argv);
+$console = new \engine\Modules\Console\ConsoleHandler(
+    new \engine\Modules\Console\Request(),
+    new \engine\Modules\Console\Commands()
+);
+$console->handle();

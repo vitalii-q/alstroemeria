@@ -21,7 +21,8 @@
             "app\\Middleware\\": "app/Middleware",
             "app\\Providers\\": "app/Providers",
             "app\\Events\\": "app/Events",
-            "app\\Listeners\\": "app/Listeners"
+            "app\\Listeners\\": "app/Listeners",
+            "app\\Console\\": "app/Console"
         }
     }
 }
