@@ -5,6 +5,13 @@ namespace engine\Modules\Console;
 class Command
 {
     /**
+     * Passed parameters
+     *
+     * @var array
+     */
+    protected $parameters = [];
+
+    /**
      * Get the command name
      *
      * @return mixed
@@ -14,8 +21,23 @@ class Command
         return explode(' ',$this->signature)[0];
     }
 
-    public function setParameters()
+    /**
+     * Set command parameters
+     *
+     * @param $parameters
+     * @return void
+     */
+    public function setParameters($parameters)
     {
-        var_dump('1');
+        preg_match_all('/\{([A-Za-z0-9]+)\}/', $this->signature, $result); // получаем содержимое между {}
+
+        $this->parameters = array_combine($result[1], $parameters); // комбинируем массив ключей и значений
     }
+
+    public function argument($arg)
+    {
+        return $this->parameters[$arg];
+    }
+
+
 }

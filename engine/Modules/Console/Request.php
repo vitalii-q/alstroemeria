@@ -12,7 +12,7 @@ class Request
     /**
      * @var array
      */
-    //protected $parameters = [];
+    protected $parameters = [];
 
     /**
      * Construct request and parameters
@@ -23,13 +23,13 @@ class Request
 
         $this->name = $argv[1];
 
-        /*if (isset($argv[2])) {
+        if (isset($argv[2])) {
             unset($argv[0], $argv[1]); $i = 1;
 
             foreach ($argv as $param) {
                 $this->parameters['param'.$i++] = $param;
             }
-        }*/
+        }
     }
 
     /**
@@ -38,5 +38,13 @@ class Request
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return array
+     */
+    public function getParameters(): array
+    {
+        return $this->parameters;
     }
 }

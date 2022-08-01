@@ -17,7 +17,7 @@ class ConsoleHandler
     public function handle()
     {
         $command = $this->command();
-        $command->setParameters();
+        $command->setParameters($this->request->getParameters());
         $command->handle();
     }
 

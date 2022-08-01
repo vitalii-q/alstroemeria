@@ -8,6 +8,7 @@ class UserCreate extends Command
 {
     /**
      * The name and signature of the console command.
+     * Get parameters: $this->argument('name')
      *
      * @var string
      */
@@ -27,7 +28,7 @@ class UserCreate extends Command
      */
     public function handle()
     {
-        var_dump('1111');
+        //var_dump($this->argument('name'));
         return 0;
     }
 }
