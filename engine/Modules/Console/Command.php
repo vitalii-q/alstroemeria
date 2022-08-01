@@ -32,12 +32,18 @@ class Command
         preg_match_all('/\{([A-Za-z0-9]+)\}/', $this->signature, $result); // получаем содержимое между {}
 
         $i = 0;
-        while ($i < count($result[1]) and $i < count($parameters)) {
+        while ($i < count($result[1]) and $i < count($parameters)) { // выполняет пока соответствует условие
             $this->parameters[$result[1][$i]] = $parameters[$i];
             $i++;
         }
     }
 
+    /**
+     * Get parameter
+     *
+     * @param $arg
+     * @return mixed
+     */
     public function argument($arg)
     {
         return $this->parameters[$arg];

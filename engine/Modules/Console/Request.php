@@ -33,6 +33,8 @@ class Request
     }
 
     /**
+     * Get command name
+     *
      * @return mixed
      */
     public function getName()
@@ -41,6 +43,8 @@ class Request
     }
 
     /**
+     * Get command parameters
+     *
      * @return array
      */
     public function getParameters(): array

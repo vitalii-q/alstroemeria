@@ -28,7 +28,6 @@ class UserCreate extends Command
      */
     public function handle()
     {
-        //var_dump($this->argument('name'));
         return 0;
     }
 }
