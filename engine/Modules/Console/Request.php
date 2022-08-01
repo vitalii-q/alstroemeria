@@ -24,10 +24,10 @@ class Request
         $this->name = $argv[1];
 
         if (isset($argv[2])) {
-            unset($argv[0], $argv[1]); $i = 1;
+            unset($argv[0], $argv[1]); $i = 0;
 
             foreach ($argv as $param) {
-                $this->parameters['param'.$i++] = $param;
+                $this->parameters[$i++] = $param;
             }
         }
     }
