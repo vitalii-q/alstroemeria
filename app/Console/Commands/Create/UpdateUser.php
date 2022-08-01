@@ -1,24 +1,24 @@
 <?php
 
-namespace app\Console\Commands;
+namespace app\Console\Commands\Create;
 
 use engine\Modules\Console\Command;
 
-class UserCreate extends Command
+class UpdateUser extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'user:create {name}';
+    protected $signature = 'user:update';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Creating user';
+    protected $description = 'Updating user';
 
     /**
      * Execute the console command.
@@ -27,7 +27,7 @@ class UserCreate extends Command
      */
     public function handle()
     {
-        var_dump('1111');
+
         return 0;
     }
 }

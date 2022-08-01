@@ -11,7 +11,7 @@ class RouteList extends Command
      *
      * @var string
      */
-    protected $name = 'route:list';
+    protected $signature = 'route:list {auth}';
 
     /**
      * The console command description.

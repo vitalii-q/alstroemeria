@@ -2,28 +2,35 @@
 
 namespace engine\Modules\Console;
 
-use app\Console\Commands\UserCreate;
-
 class ConsoleHandler
 {
-    protected $command;
+    protected $request;
 
     protected $commands;
 
-    public function __construct($command, $commands)
+    public function __construct($request, $commands)
     {
-        $this->command = $command;
-        $this->commands = $commands;
+        $this->request = $request;
+        $this->commands = $commands->getCommands();
     }
 
     public function handle()
     {
-        //var_dump(__DIR__.'/../../../app/Console/Commands');
-        //var_dump(scandir(__DIR__.'/../../../app/Console/Commands'));
+        $command = $this->command();
+        $command->setParameters();
+        $command->handle();
+    }
 
-        $userCreate = new UserCreate();
-        //var_dump($userCreate->getName());
+    public function command()
+    {
+        foreach ($this->commands as $command) {
+            if ($command->getName() == $this->request->getName()) {
+                return $command;
+            }
+        }
 
-        //var_dump($this->command);
+        return throw new \Exception(
+            sprintf('Command <strong>%s</strong> does not exist.', $this->command->getName())
+        );
     }
 }
