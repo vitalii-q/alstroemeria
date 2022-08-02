@@ -1,4 +1,5 @@
 <?php
+namespace app\Console;
 
 class Kernel
 {
@@ -10,6 +11,6 @@ class Kernel
      */
     public function schedule()
     {
-
+        var_dump(date('H:i:s D, d M Y'));
     }
 }
