@@ -4,8 +4,6 @@ namespace engine\Modules\Console;
 
 class Command
 {
-    use ManagerFrequencies;
-
     /**
      * Passed parameters
      *

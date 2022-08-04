@@ -2,8 +2,10 @@
 
 namespace engine\Modules\Console\Schedule;
 
+use engine\Modules\Console\Command;
 use engine\Modules\Console\CommandFinder;
 use engine\Modules\Console\Commands;
+use engine\Modules\Console\ManagerFrequencies;
 
 class Schedule
 {
@@ -13,14 +15,11 @@ class Schedule
 
     protected $tasks = [];
 
-    protected $time;
-
-    protected $checkTime;
+    protected $timeChecker;
 
     public function __construct()
     {
-        $this->checkTime = new ScheduleCheckTime();
-        $this->time = date('i:G:j:n:d');
+        $this->timeChecker = new TaskTimeChecker();
 
         $commands = new Commands();
         $this->commands = $commands->getCommands();
@@ -33,25 +32,25 @@ class Schedule
 
         $this->tasks[] = $command;
 
-        return $command;
+        var_dump(get_class($command));
+        $q = get_class($command);
+        //exit();
+        $comm = new Command();
+
+        //return $command;
+        //return new $q;
+        return $comm;
     }
 
     public function run()
     {
         foreach ($this->tasks as $task) {
-            if ($this->checkActivationTime($task)) {
-                //var_dump($task->getFrequency());
-                //var_dump($task);
+            if ($this->timeChecker->checkActivationTime($task->getFrequency())) {
+                $task->handle();
             }
 
         }
+
         //var_dump($this->tasks);
-    }
-
-    public function checkActivationTime($task)
-    {
-        var_dump($this->time);
-
-        return true;
     }
 }
