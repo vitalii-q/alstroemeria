@@ -4,6 +4,7 @@ namespace engine\Modules\Console\CommandsDefault;
 
 use app\Console\Kernel;
 use engine\Modules\Console\Command;
+use engine\Modules\Console\Schedule\Schedule;
 
 class ScheduleRun extends Command
 {
@@ -29,8 +30,9 @@ class ScheduleRun extends Command
     public function handle()
     {
         $kernel = new Kernel();
-        $kernel->schedule();
+        $kernel->schedule($schedule = new Schedule());
+        $schedule->run();
 
-        return 0;
+        return true;
     }
 }

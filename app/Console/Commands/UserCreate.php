@@ -28,6 +28,7 @@ class UserCreate extends Command
      */
     public function handle()
     {
-        return 0;
+        var_dump('User created');
+        return true;
     }
 }

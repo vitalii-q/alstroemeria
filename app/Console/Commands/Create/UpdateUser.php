@@ -28,6 +28,6 @@ class UpdateUser extends Command
     public function handle()
     {
 
-        return 0;
+        return true;
     }
 }

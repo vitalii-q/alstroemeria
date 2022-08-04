@@ -4,12 +4,16 @@ namespace engine\Modules\Console;
 
 class Command
 {
+    use ManagerFrequencies;
+
     /**
      * Passed parameters
      *
      * @var array
      */
     protected $parameters = [];
+
+    protected $frequency = '* * * * *';
 
     /**
      * Get the command name
@@ -18,7 +22,7 @@ class Command
      */
     public function getName()
     {
-        return explode(' ',$this->signature)[0];
+        return explode(' ', $this->signature)[0];
     }
 
     /**
@@ -49,5 +53,11 @@ class Command
         return $this->parameters[$arg];
     }
 
-
+    /**
+     * @return mixed
+     */
+    public function getFrequency()
+    {
+        return $this->frequency;
+    }
 }

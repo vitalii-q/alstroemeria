@@ -2,23 +2,24 @@
 
 namespace engine\Modules\Console\CommandsDefault;
 
+use app\Console\Kernel;
 use engine\Modules\Console\Command;
 
-class RouteList extends Command
+class ScheduleWork extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'route:list {auth}';
+    protected $signature = 'schedule:work';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Show route list';
+    protected $description = 'Schedule work command';
 
     /**
      * Execute the console command.
@@ -27,7 +28,8 @@ class RouteList extends Command
      */
     public function handle()
     {
-        echo 'route list';
+        $kernel = new Kernel();
+        $kernel->schedule();
 
         return true;
     }

@@ -1,16 +1,17 @@
 <?php
 namespace app\Console;
 
+use engine\Modules\Console\Schedule\Schedule;
+
 class Kernel
 {
-
     /**
      * The application's command schedule.
      *
      * @return void
      */
-    public function schedule()
+    public function schedule(Schedule $schedule)
     {
-        var_dump(date('H:i:s D, d M Y'));
+        $schedule->command('user:create Alex')->everyMinute();
     }
 }
