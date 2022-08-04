@@ -11,7 +11,8 @@ class TaskTimeChecker
 
     public function __construct()
     {
-        $this->time = Converter::arrayNumericConvertor(explode(':', date('i:G:j:n:d')));
+        //$this->time = Converter::arrayNumericConvertor(explode(':', date('i:G:j:n:d')));
+        $this->time = Converter::arrayNumericConvertor(explode(':', '04:00:4:8:04'));
     }
 
     public function checkActivationTime($taskTime)
@@ -20,11 +21,14 @@ class TaskTimeChecker
         $taskTime = Converter::arrayNumericConvertor($timeExp);
 
         //var_dump($timeExp);
-        var_dump($taskTime);
+        //var_dump($taskTime);
         //exit();
 
-        $minutes = $this->monthDayHourMinute($taskTime[1]);
-        $hours = $this->monthDayHourMinute($taskTime[2]);
+        $minutes = $this->monthDayHourMinute($taskTime[1], 1);
+        $hours = $this->monthDayHourMinute($taskTime[2], 2);
+
+        var_dump($minutes);
+        var_dump($hours);
 
         if ($minutes === true) {
             return true;
@@ -33,20 +37,20 @@ class TaskTimeChecker
         return false;
     }
 
-    public function monthDayHourMinute($minutes) // $offset, $value
+    public function monthDayHourMinute($value, $offset = 1) // $offset, $value
     {
-        if($minutes === '*') {
+        if($value === '*') {
             return true;
         }
 
-        if(strpos($minutes, '*/') !== false) { //
-            if($this->time[1] % explode('*/', $minutes)[1] === 0) { // деление времени на заданное колличество минут
+        if(strpos($value, '*/') !== false) { //
+            if($this->time[$offset] % explode('*/', $value)[1] === 0) { // деление времени на заданное колличество минут
                 return true;
             }
         }
 
         if(is_numeric(0)) {
-            if ($this->time[1] == $minutes) {
+            if ($this->time[$offset] == $value) {
                 return true;
             }
         }

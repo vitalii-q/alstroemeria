@@ -2,6 +2,8 @@
 
 namespace engine\Modules\Console;
 
+use engine\Modules\Console\Schedule\Schedule;
+
 trait ManagerFrequencies
 {
     protected function cron($expression)
@@ -165,6 +167,149 @@ trait ManagerFrequencies
     {
         return $this->spliceIntoPosition(1, 0)
             ->spliceIntoPosition(2, 0);
+    }
+
+    /**
+     * Schedule the command at a given time.
+     *
+     * @param  string  $time
+     * @return $this
+     */
+    public function at($time)
+    {
+        return $this->dailyAt($time);
+    }
+
+    /**
+     * Schedule the event to run daily at a given time (10:00, 19:30, etc).
+     *
+     * @param  string  $time
+     * @return $this
+     */
+    public function dailyAt($time)
+    {
+        $segments = explode(':', $time);
+
+        return $this->spliceIntoPosition(2, (int) $segments[0])
+            ->spliceIntoPosition(1, count($segments) === 2 ? (int) $segments[1] : '0');
+    }
+
+    /**
+     * Schedule the event to run twice daily.
+     *
+     * @param  int  $first
+     * @param  int  $second
+     * @return $this
+     */
+    public function twiceDaily($first = 1, $second = 13)
+    {
+        return $this->twiceDailyAt($first, $second, 0);
+    }
+
+    /**
+     * Schedule the event to run twice daily at a given offset.
+     *
+     * @param  int  $first
+     * @param  int  $second
+     * @param  int  $offset
+     * @return $this
+     */
+    public function twiceDailyAt($first = 1, $second = 13, $offset = 0)
+    {
+        $hours = $first.','.$second;
+
+        return $this->spliceIntoPosition(1, $offset)
+            ->spliceIntoPosition(2, $hours);
+    }
+
+    /**
+     * Schedule the event to run only on weekdays.
+     *
+     * @return $this
+     */
+    public function weekdays()
+    {
+        return $this->days(Schedule::MONDAY.'-'.Schedule::FRIDAY);
+    }
+
+    /**
+     * Schedule the event to run only on weekends.
+     *
+     * @return $this
+     */
+    public function weekends()
+    {
+        return $this->days(Schedule::SATURDAY.','.Schedule::SUNDAY);
+    }
+
+    /**
+     * Schedule the event to run only on Mondays.
+     *
+     * @return $this
+     */
+    public function mondays()
+    {
+        return $this->days(Schedule::MONDAY);
+    }
+
+    /**
+     * Schedule the event to run only on Tuesdays.
+     *
+     * @return $this
+     */
+    public function tuesdays()
+    {
+        return $this->days(Schedule::TUESDAY);
+    }
+
+    /**
+     * Schedule the event to run only on Wednesdays.
+     *
+     * @return $this
+     */
+    public function wednesdays()
+    {
+        return $this->days(Schedule::WEDNESDAY);
+    }
+
+    /**
+     * Schedule the event to run only on Thursdays.
+     *
+     * @return $this
+     */
+    public function thursdays()
+    {
+        return $this->days(Schedule::THURSDAY);
+    }
+
+    /**
+     * Schedule the event to run only on Fridays.
+     *
+     * @return $this
+     */
+    public function fridays()
+    {
+        return $this->days(Schedule::FRIDAY);
+    }
+
+    /**
+     * Schedule the event to run only on Saturdays.
+     *
+     * @return $this
+     */
+    public function saturdays()
+    {
+        return $this->days(Schedule::SATURDAY);
+    }
+
+    /**
+     * Schedule the event to run only on Sundays.
+     *
+     * @return $this
+     */
+    public function sundays()
+    {
+        return $this->days(Schedule::SUNDAY);
     }
 
     protected function spliceIntoPosition($position, $value)
