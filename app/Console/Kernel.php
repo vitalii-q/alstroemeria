@@ -12,6 +12,7 @@ class Kernel
      */
     public function schedule(Schedule $schedule)
     {
-        $schedule->command('user:create Alex')->everyTwoMinutes();
+        //$schedule->command('user:create Alex')->everyMinute();
+        $schedule->command('user:create Alex')->hourlyAt(23);
     }
 }

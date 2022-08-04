@@ -88,7 +88,7 @@ trait ManagerFrequencies
      */
     public function everyThirtyMinutes()
     {
-        return $this->spliceIntoPosition(1, '0,30');
+        return $this->spliceIntoPosition(1, '*/30');
     }
 
     /**
@@ -99,6 +99,72 @@ trait ManagerFrequencies
     public function hourly()
     {
         return $this->spliceIntoPosition(1, 0);
+    }
+
+    /**
+     * Schedule the event to run hourly at a given offset in the hour.
+     *
+     * @param  array|int  $offset
+     * @return $this
+     */
+    public function hourlyAt($hour)
+    {
+        return $this->spliceIntoPosition(1, 0)->spliceIntoPosition(2, $hour);
+    }
+
+    /**
+     * Schedule the event to run every two hours.
+     *
+     * @return $this
+     */
+    public function everyTwoHours()
+    {
+        return $this->spliceIntoPosition(1, 0)
+            ->spliceIntoPosition(2, '*/2');
+    }
+
+    /**
+     * Schedule the event to run every three hours.
+     *
+     * @return $this
+     */
+    public function everyThreeHours()
+    {
+        return $this->spliceIntoPosition(1, 0)
+            ->spliceIntoPosition(2, '*/3');
+    }
+
+    /**
+     * Schedule the event to run every four hours.
+     *
+     * @return $this
+     */
+    public function everyFourHours()
+    {
+        return $this->spliceIntoPosition(1, 0)
+            ->spliceIntoPosition(2, '*/4');
+    }
+
+    /**
+     * Schedule the event to run every six hours.
+     *
+     * @return $this
+     */
+    public function everySixHours()
+    {
+        return $this->spliceIntoPosition(1, 0)
+            ->spliceIntoPosition(2, '*/6');
+    }
+
+    /**
+     * Schedule the event to run daily.
+     *
+     * @return $this
+     */
+    public function daily()
+    {
+        return $this->spliceIntoPosition(1, 0)
+            ->spliceIntoPosition(2, 0);
     }
 
     protected function spliceIntoPosition($position, $value)

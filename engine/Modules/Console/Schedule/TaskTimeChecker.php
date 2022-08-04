@@ -15,20 +15,21 @@ class TaskTimeChecker
 
     public function checkActivationTime($taskTime)
     {
-        //var_dump($this->time);
-
-        $timeExp = explode(' ', $taskTime);
+        $taskTime = $this->timeConverter($taskTime);
 
         //var_dump($timeExp);
+        //var_dump($timeExp);
+        exit();
 
-        $minutes = $this->minutes($timeExp[0]);
+        $minutes = $this->monthDayHourMinute($taskTime[0]);
+        $minutes = $this->monthDayHourMinute($taskTime[1]);
 
         if ($minutes === true) {
             return true;
         }
     }
 
-    public function minutes($minutes)
+    public function monthDayHourMinute($minutes)
     {
         if($minutes === '*') {
             return true;
@@ -47,5 +48,17 @@ class TaskTimeChecker
         }
 
         return false;
+    }
+
+    private function timeConverter($taskTime)
+    {
+        $timeExp = explode(' ', $taskTime);
+
+        $time = [];
+        foreach ($timeExp as $key => $item) {
+            $time[$key + 1] = $item;
+        }
+
+        return $time;
     }
 }
