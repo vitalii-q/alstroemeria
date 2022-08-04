@@ -11,8 +11,6 @@ class Command
      */
     protected $parameters = [];
 
-    protected $frequency = '* * * * *';
-
     /**
      * Get the command name
      *
@@ -49,13 +47,5 @@ class Command
     public function argument($arg)
     {
         return $this->parameters[$arg];
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFrequency()
-    {
-        return $this->frequency;
     }
 }

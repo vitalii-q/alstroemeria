@@ -30,27 +30,24 @@ class Schedule
         $signatureExp = explode(' ', $signature);
         $command = $this->getCommand($signatureExp[0]);
 
+        $command = new Task($command);
+
         $this->tasks[] = $command;
 
-        var_dump(get_class($command));
-        $q = get_class($command);
-        //exit();
-        $comm = new Command();
-
-        //return $command;
-        //return new $q;
-        return $comm;
+        return $command;
     }
 
+    /**
+     * Running all tasks according to the schedule
+     *
+     * @return void
+     */
     public function run()
     {
         foreach ($this->tasks as $task) {
             if ($this->timeChecker->checkActivationTime($task->getFrequency())) {
-                $task->handle();
+                $task->getCommand()->handle();
             }
-
         }
-
-        //var_dump($this->tasks);
     }
 }
