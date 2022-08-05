@@ -321,7 +321,7 @@ trait ManagerFrequencies
     {
         return $this->spliceIntoPosition(1, 0)
             ->spliceIntoPosition(2, 0)
-            ->spliceIntoPosition(5, 0);
+            ->spliceIntoPosition(5, 1);
     }
 
     /**
@@ -391,7 +391,49 @@ trait ManagerFrequencies
     {
         $this->dailyAt($time);
 
-        return $this->spliceIntoPosition(3, Carbon::now()->endOfMonth()->day);
+        return $this->spliceIntoPosition(3, date('t'));
+    }
+
+    /**
+     * Schedule the event to run quarterly.
+     *
+     * @return $this
+     */
+    public function quarterly()
+    {
+        return $this->spliceIntoPosition(1, 0)
+            ->spliceIntoPosition(2, 0)
+            ->spliceIntoPosition(3, 1)
+            ->spliceIntoPosition(4, '1,4,7,10');
+    }
+
+    /**
+     * Schedule the event to run yearly.
+     *
+     * @return $this
+     */
+    public function yearly()
+    {
+        return $this->spliceIntoPosition(1, 0)
+            ->spliceIntoPosition(2, 0)
+            ->spliceIntoPosition(3, 1)
+            ->spliceIntoPosition(4, 1);
+    }
+
+    /**
+     * Schedule the event to run yearly on a given month, day, and time.
+     *
+     * @param  int  $month
+     * @param  int|string  $dayOfMonth
+     * @param  string  $time
+     * @return $this
+     */
+    public function yearlyOn($month = 1, $dayOfMonth = 1, $time = '0:0')
+    {
+        $this->dailyAt($time);
+
+        return $this->spliceIntoPosition(3, $dayOfMonth)
+            ->spliceIntoPosition(4, $month);
     }
 
     /**

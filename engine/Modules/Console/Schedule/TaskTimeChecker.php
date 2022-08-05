@@ -12,7 +12,7 @@ class TaskTimeChecker
     public function __construct()
     {
         //$this->time = Converter::arrayNumericConvertor(explode(':', date('i:G:j:n:d')));
-        $this->time = Converter::arrayNumericConvertor(explode(':', '00:07:6:8:04'));
+        $this->time = Converter::arrayNumericConvertor(explode(':', '01:15:10:12:07'));
     }
 
     public function checkActivationTime($taskTime)
@@ -21,19 +21,22 @@ class TaskTimeChecker
         $taskTime = Converter::arrayNumericConvertor($timeExp);
 
         //var_dump($timeExp);
-        var_dump($taskTime[5]);
+        var_dump($taskTime);
         //exit();
 
         $minutes = $this->monthDayHourMinute($taskTime[1], 1);
         $hours = $this->monthDayHourMinute($taskTime[2], 2);
-
+        $days = $this->monthDayHourMinute($taskTime[3], 3);
+        $month = $this->monthDayHourMinute($taskTime[4], 4);
         $daysOfWeek = $this->monthDayHourMinute($taskTime[5], 5);
 
         var_dump($minutes);
         var_dump($hours);
+        var_dump($days);
+        var_dump($month);
         var_dump($daysOfWeek);
 
-        if ($minutes === true and $hours === true and $daysOfWeek === true) {
+        if ($minutes === true and $hours === true and $days === true and $month ===true and $daysOfWeek === true) {
             return true;
         }
 
