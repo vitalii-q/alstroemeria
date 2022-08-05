@@ -4,6 +4,7 @@ namespace engine\Modules\Console\CommandsDefault;
 
 use app\Console\Kernel;
 use engine\Modules\Console\Command;
+use engine\Modules\Console\Schedule\Schedule;
 
 class ScheduleWork extends Command
 {
@@ -29,7 +30,15 @@ class ScheduleWork extends Command
     public function handle()
     {
         $kernel = new Kernel();
-        $kernel->schedule();
+        $schedule = new Schedule();
+        $kernel->schedule($schedule);
+
+        $i = 1; while ($i < 2) { // вечный цикл
+            echo 'Starting a loop iteration.'.PHP_EOL;
+            $schedule->run();
+
+            sleep(60); // остановить выполнение скрипта на минуту
+        }
 
         return true;
     }
