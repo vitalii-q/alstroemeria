@@ -2,10 +2,8 @@
 
 namespace engine\Modules\Console\Schedule;
 
-use engine\Modules\Console\Command;
 use engine\Modules\Console\CommandFinder;
 use engine\Modules\Console\Commands;
-use engine\Modules\Console\ManagerFrequencies;
 
 class Schedule
 {
@@ -19,12 +17,30 @@ class Schedule
     const FRIDAY = 5;
     const SATURDAY = 6;
 
+    /**
+     * All project commands
+     *
+     * @var array
+     */
     protected $commands = [];
 
+    /**
+     * Commands in the schedule
+     *
+     * @var array
+     */
     protected $tasks = [];
 
+    /**
+     * Task time schedule checker
+     *
+     * @var TaskTimeChecker
+     */
     protected $timeChecker;
 
+    /**
+     * Construct class variables and getting project commands
+     */
     public function __construct()
     {
         $this->timeChecker = new TaskTimeChecker();
@@ -33,6 +49,13 @@ class Schedule
         $this->commands = $commands->getCommands();
     }
 
+    /**
+     * Getting command and adding to the tasks
+     *
+     * @param $signature
+     * @return Task
+     * @throws \Exception
+     */
     public function command($signature)
     {
         $signatureExp = explode(' ', $signature);

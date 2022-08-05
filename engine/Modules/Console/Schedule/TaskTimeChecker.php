@@ -7,43 +7,54 @@ use engine\Modules\Console\Commands;
 
 class TaskTimeChecker
 {
+    /**
+     * Current time
+     *
+     * @var array
+     */
     protected $time;
 
+    /**
+     * Construct current time
+     */
     public function __construct()
     {
-        //$this->time = Converter::arrayNumericConvertor(explode(':', date('i:G:j:n:d')));
+        //$this->time = Converter::arrayNumericConvertor(explode(':', date('i:G:j:n:d'))); // тестовый
         $this->time = Converter::arrayNumericConvertor(explode(':', '01:15:10:12:07'));
     }
 
+    /**
+     * Check task time activation
+     *
+     * @param $taskTime
+     * @return bool
+     */
     public function checkActivationTime($taskTime)
     {
         $timeExp = explode(' ', $taskTime);
         $taskTime = Converter::arrayNumericConvertor($timeExp);
 
-        //var_dump($timeExp);
-        var_dump($taskTime);
-        //exit();
+        $minutes = $this->checkPosition($taskTime[1], 1);
+        $hours = $this->checkPosition($taskTime[2], 2);
+        $days = $this->checkPosition($taskTime[3], 3);
+        $month = $this->checkPosition($taskTime[4], 4);
+        $daysOfWeek = $this->checkPosition($taskTime[5], 5);
 
-        $minutes = $this->monthDayHourMinute($taskTime[1], 1);
-        $hours = $this->monthDayHourMinute($taskTime[2], 2);
-        $days = $this->monthDayHourMinute($taskTime[3], 3);
-        $month = $this->monthDayHourMinute($taskTime[4], 4);
-        $daysOfWeek = $this->monthDayHourMinute($taskTime[5], 5);
-
-        var_dump($minutes);
-        var_dump($hours);
-        var_dump($days);
-        var_dump($month);
-        var_dump($daysOfWeek);
-
-        if ($minutes === true and $hours === true and $days === true and $month ===true and $daysOfWeek === true) {
+        if ($minutes === true and $hours === true and $days === true and $month === true and $daysOfWeek === true) {
             return true;
         }
 
         return false;
     }
 
-    public function monthDayHourMinute($value, $offset = 1) // $offset, $value
+    /**
+     * Check task time position
+     *
+     * @param $value
+     * @param $offset
+     * @return bool
+     */
+    public function checkPosition($value, $offset = 1) // $offset, $value
     {
         // если каждый интервал
         if($value === '*') {

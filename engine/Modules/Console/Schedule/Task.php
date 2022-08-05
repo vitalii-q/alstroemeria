@@ -9,16 +9,33 @@ class Task
 {
     use ManagerFrequencies;
 
+    /**
+     * Command to execute
+     *
+     * @var Command
+     */
     protected $command;
 
+    /**ы
+     * Frequency of task execution
+     *
+     * @var string
+     */
     protected $frequency = '* * * * *';
 
+    /**
+     * Construct task command
+     *
+     * @param Command $command
+     */
     public function __construct(Command $command)
     {
         $this->command = $command;
     }
 
     /**
+     * Get task command
+     *
      * @return Command
      */
     public function getCommand(): Command
@@ -27,6 +44,8 @@ class Task
     }
 
     /**
+     * Get task frequency execution
+     *
      * @return string
      */
     public function getFrequency(): string

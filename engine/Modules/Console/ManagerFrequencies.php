@@ -449,6 +449,13 @@ trait ManagerFrequencies
         return $this->spliceIntoPosition(5, implode(',', $days));
     }
 
+    /**
+     * Splice the given value into the given position of the expression.
+     *
+     * @param  int  $position
+     * @param  string  $value
+     * @return $this
+     */
     protected function spliceIntoPosition($position, $value)
     {
         $segments = explode(' ', $this->frequency);

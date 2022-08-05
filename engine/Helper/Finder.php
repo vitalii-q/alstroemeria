@@ -4,6 +4,12 @@ namespace engine\Helper;
 
 class Finder
 {
+    /**
+     * Getting all files from the directory
+     *
+     * @param $dir
+     * @return array|false
+     */
     public function findFiles($dir)
     {
         // ищем файлы в папке и подпапках

@@ -52,7 +52,8 @@ class Commands
     public function setCommands()
     {
         $files = array_merge(
-            $this->finder->findFiles($this->defCommandsPath), $this->finder->findFiles($this->commandsPath)
+            $this->finder->findFiles($this->defCommandsPath),
+            $this->finder->findFiles($this->commandsPath)
         );
 
         foreach ($files as $str) {
