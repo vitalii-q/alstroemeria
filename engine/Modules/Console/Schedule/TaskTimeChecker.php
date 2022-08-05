@@ -12,7 +12,7 @@ class TaskTimeChecker
     public function __construct()
     {
         //$this->time = Converter::arrayNumericConvertor(explode(':', date('i:G:j:n:d')));
-        $this->time = Converter::arrayNumericConvertor(explode(':', '04:00:4:8:04'));
+        $this->time = Converter::arrayNumericConvertor(explode(':', '00:07:6:8:04'));
     }
 
     public function checkActivationTime($taskTime)
@@ -21,16 +21,19 @@ class TaskTimeChecker
         $taskTime = Converter::arrayNumericConvertor($timeExp);
 
         //var_dump($timeExp);
-        //var_dump($taskTime);
+        var_dump($taskTime[5]);
         //exit();
 
         $minutes = $this->monthDayHourMinute($taskTime[1], 1);
         $hours = $this->monthDayHourMinute($taskTime[2], 2);
 
+        $daysOfWeek = $this->monthDayHourMinute($taskTime[5], 5);
+
         var_dump($minutes);
         var_dump($hours);
+        var_dump($daysOfWeek);
 
-        if ($minutes === true) {
+        if ($minutes === true and $hours === true and $daysOfWeek === true) {
             return true;
         }
 
@@ -39,19 +42,45 @@ class TaskTimeChecker
 
     public function monthDayHourMinute($value, $offset = 1) // $offset, $value
     {
+        // если каждый интервал
         if($value === '*') {
             return true;
         }
 
-        if(strpos($value, '*/') !== false) { //
+        // если каждый указанный отрезок времени
+        if(strpos($value, '*/') !== false) {
             if($this->time[$offset] % explode('*/', $value)[1] === 0) { // деление времени на заданное колличество минут
                 return true;
             }
         }
 
+        // если в заданное число
         if(is_numeric(0)) {
             if ($this->time[$offset] == $value) {
                 return true;
+            }
+        }
+
+        // если несколько указанных чисел
+        if(strpos($value, ',') !== false) { // возвращает позицию первого вхождения подстроки
+            $expValue = explode(',', $value);
+
+            foreach ($expValue as $part) {
+                if($this->time[$offset] == $part) {
+                    return true;
+                }
+            }
+        }
+
+        // если укзанно от - до
+        if(strpos($value, '-') !== false) {
+            $array = [1,2,3,4,5,6,7];
+            $expValue = explode('-', $value);
+
+            foreach ($array as $part) {
+                if($part >= $expValue[0] and $part <= $expValue[1] and $part == $this->time[$offset]) {
+                    return true;
+                }
             }
         }
 

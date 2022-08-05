@@ -13,6 +13,6 @@ class Kernel
     public function schedule(Schedule $schedule)
     {
         //$schedule->command('user:create Alex')->everyMinute();
-        $schedule->command('user:create Alex')->daily();
+        $schedule->command('user:create Alex')->days(1,2,3)->hourlyAt(8);
     }
 }

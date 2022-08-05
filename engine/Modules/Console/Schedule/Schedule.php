@@ -11,7 +11,7 @@ class Schedule
 {
     use CommandFinder;
 
-    const SUNDAY = 0;
+    const SUNDAY = 7;
     const MONDAY = 1;
     const TUESDAY = 2;
     const WEDNESDAY = 3;

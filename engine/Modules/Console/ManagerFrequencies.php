@@ -214,11 +214,11 @@ trait ManagerFrequencies
      * @param  int  $offset
      * @return $this
      */
-    public function twiceDailyAt($first = 1, $second = 13, $offset = 0)
+    public function twiceDailyAt($first = 1, $second = 13, $minutes = 0)
     {
         $hours = $first.','.$second;
 
-        return $this->spliceIntoPosition(1, $offset)
+        return $this->spliceIntoPosition(1, $minutes)
             ->spliceIntoPosition(2, $hours);
     }
 
@@ -310,6 +310,101 @@ trait ManagerFrequencies
     public function sundays()
     {
         return $this->days(Schedule::SUNDAY);
+    }
+
+    /**
+     * Schedule the event to run weekly.
+     *
+     * @return $this
+     */
+    public function weekly()
+    {
+        return $this->spliceIntoPosition(1, 0)
+            ->spliceIntoPosition(2, 0)
+            ->spliceIntoPosition(5, 0);
+    }
+
+    /**
+     * Schedule the event to run weekly on a given day and time.
+     *
+     * @param  array|mixed  $dayOfWeek
+     * @param  string  $time
+     * @return $this
+     */
+    public function weeklyOn($dayOfWeek, $time = '0:0')
+    {
+        $this->dailyAt($time);
+
+        return $this->days($dayOfWeek);
+    }
+
+    /**
+     * Schedule the event to run monthly.
+     *
+     * @return $this
+     */
+    public function monthly()
+    {
+        return $this->spliceIntoPosition(1, 0)
+            ->spliceIntoPosition(2, 0)
+            ->spliceIntoPosition(3, 1);
+    }
+
+    /**
+     * Schedule the event to run monthly on a given day and time.
+     *
+     * @param  int  $dayOfMonth
+     * @param  string  $time
+     * @return $this
+     */
+    public function monthlyOn($dayOfMonth = 1, $time = '0:0')
+    {
+        $this->dailyAt($time);
+
+        return $this->spliceIntoPosition(3, $dayOfMonth);
+    }
+
+    /**
+     * Schedule the event to run twice monthly at a given time.
+     *
+     * @param  int  $first
+     * @param  int  $second
+     * @param  string  $time
+     * @return $this
+     */
+    public function twiceMonthly($first = 1, $second = 16, $time = '0:0')
+    {
+        $daysOfMonth = $first.','.$second;
+
+        $this->dailyAt($time);
+
+        return $this->spliceIntoPosition(3, $daysOfMonth);
+    }
+
+    /**
+     * Schedule the event to run on the last day of the month.
+     *
+     * @param  string  $time
+     * @return $this
+     */
+    public function lastDayOfMonth($time = '0:0')
+    {
+        $this->dailyAt($time);
+
+        return $this->spliceIntoPosition(3, Carbon::now()->endOfMonth()->day);
+    }
+
+    /**
+     * Set the days of the week the command should run on.
+     *
+     * @param  array|mixed  $days
+     * @return $this
+     */
+    public function days($days)
+    {
+        $days = is_array($days) ? $days : func_get_args(); // func_get_args() - возвращает массив, содержащий аргументы функции
+
+        return $this->spliceIntoPosition(5, implode(',', $days));
     }
 
     protected function spliceIntoPosition($position, $value)
