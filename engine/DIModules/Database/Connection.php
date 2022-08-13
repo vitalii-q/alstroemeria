@@ -31,10 +31,9 @@ class Connection
         $db_connection = \engine\Helper\Env::get('DB_CONNECTION', 'mysql');
 
         try {
-            if ($db_connection == 'mysql') {
-                $link = $db_connection.':host='.$config['host'].';dbname='.$config['database'].';charset='.$config['charset'];
-            } else {
-                $link = $db_connection.':host='.$config['host'].';dbname='.$config['database'];
+            switch ($db_connection) {
+                case ('mysql'): $link = $db_connection.':host='.$config['host'].';dbname='.$config['database'].';charset='.$config['charset']; break;
+                case ('pgsql'): $link = $db_connection.':host='.$config['host'].';dbname='.$config['database']; break;
             }
 
             $this->link = new \PDO($link, $config['username'], $config['password']);
