@@ -22,7 +22,7 @@ class Env
             $strExp = explode('=', $string);
 
             if($strExp[0] === $setting) {
-                return $strExp[1];
+                return trim($strExp[1]); // trim - удаляет пробелы из начала и конца строки
             }
         }
 

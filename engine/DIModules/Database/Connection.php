@@ -29,10 +29,6 @@ class Connection
     {
         $config = Config::class()->get('database'); // конфигурации базы данных
         $db_connection = \engine\Helper\Env::get('DB_CONNECTION', 'mysql');
-        var_dump($db_connection);
-
-        $conf = Config::class()->get('queue')['connection'];
-        var_dump($conf);
 
         try {
             if ($db_connection == 'mysql') {
@@ -40,7 +36,6 @@ class Connection
             } else {
                 $link = $db_connection.':host='.$config['host'].';dbname='.$config['database'];
             }
-            var_dump($link);
 
             $this->link = new \PDO($link, $config['username'], $config['password']);
         } catch (\PDOException $e) {
