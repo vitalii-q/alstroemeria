@@ -18,11 +18,19 @@ abstract class Models
         $classNamespaceExp = explode('\\', get_class($this));
         $className = end($classNamespaceExp);
 
-        $table = convertToSnakeCase($className);
+        /**
+         * Закончить с преверку таблицы на существование user / users
+         */
+        /*$table = convertToSnakeCase($className);
 
         $qb = new QB();
-        $checkTable = $qb->query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'")->exe();
-        var_dump($checkTable);
+        $db_tables = $qb->query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'")->exe();
+        //var_dump($db_tables);
+
+        $table_exists = false;
+        foreach ($db_tables as $table) {
+            //var_dump($table);
+        }*/
 
         $this->table = convertToSnakeCase($className);
     }

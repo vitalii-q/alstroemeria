@@ -1,6 +1,7 @@
 <?php
 namespace engine\DIModules\Database;
 
+use engine\Database\QB;
 use engine\Helper\Get\Config;
 use engine\Modules\Log;
 
@@ -11,6 +12,8 @@ class Connection
      */
     private $link;
 
+    protected $db_connection;
+
     /**
      * Connecting to the database when the class is called
      *
@@ -18,6 +21,8 @@ class Connection
      */
     public function __construct()
     {
+        $this->db_connection = $db_connection = \engine\Helper\Env::get('DB_CONNECTION', 'mysql');
+
         $this->connect();
     }
 
@@ -28,13 +33,11 @@ class Connection
     private function connect()
     {
         $config = Config::class()->get('database'); // конфигурации базы данных
-        $db_connection = \engine\Helper\Env::get('DB_CONNECTION', 'mysql');
-        //$db_connection = 'mysql';
 
         try {
-            switch ($db_connection) {
-                case ('mysql'): $link = $db_connection.':host='.$config['host'].';dbname='.$config['database'].';charset='.$config['charset']; break;
-                case ('pgsql'): $link = $db_connection.':host='.$config['host'].';dbname='.$config['database']; break;
+            switch ($this->db_connection) {
+                case ('mysql'): $link = $this->db_connection.':host='.$config['host'].';dbname='.$config['database'].';charset='.$config['charset']; break;
+                case ('pgsql'): $link = $this->db_connection.':host='.$config['host'].';dbname='.$config['database']; break;
             }
 
             $this->link = new \PDO($link, $config['username'], $config['password']);
@@ -69,9 +72,15 @@ class Connection
      *
      * @return mixed
      */
-    public function lastInsertID()
+    public function lastInsertID($table)
     {
-        //var_dump($this->link->lastInsertId('department_id_seq'));
-        return $this->link->lastInsertId(); // PDO возвращает id последнего элемента
+        if ($this->db_connection === 'mysql')
+        {
+            return $this->link->lastInsertId(); // PDO возвращает id последнего элемента
+        }
+        elseif ($this->db_connection === 'pgsql')
+        {
+            return $this->query('SELECT max(id) FROM '. $table .' LASTVAL');
+        }
     }
 }

@@ -266,18 +266,46 @@ class QB // ПП Builder / Строитель
             }
         }
 
-        //var_dump($query);
+        var_dump($query);
 
         $connection = new Connection();
         $result = $connection->query($query);
-        var_dump($result);
-        $lastInsertID = $connection->lastInsertID(); // ID последнего созданного элемента
+        $lastInsertID = $connection->lastInsertID($this->table); // ID последнего созданного элемента
 
         if(!$result) { // если пустой результат
             return null;
         }
 
+        var_dump($result);
+
+        if(!$this->find and !$this->first) {
+            $this->queryReset();
+
+            return $result;
+        } else {
+            if($this->find == true) {
+                $this->queryReset();
+
+                if (isset($result[0])) {
+                    return $result[0];
+                }
+                throw new \Exception(sprintf('<strong>Query error ->find():</strong> %s', $query));
+            }
+
+            if($this->first) {
+                $this->queryReset();
+
+                return $result[0];
+            }
+        }
+
         if($lastInsertID) {
+            $this->queryReset();
+
+            return $lastInsertID;
+        }
+
+        /*if($lastInsertID) {
             $this->queryReset();
 
             return $lastInsertID;
@@ -300,7 +328,7 @@ class QB // ПП Builder / Строитель
 
                 return $result[0];
             }
-        }
+        }*/
     }
 
     protected static function argsFormation($param_1, $param_2)

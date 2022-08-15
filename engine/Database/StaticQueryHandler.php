@@ -110,10 +110,8 @@ final class StaticQueryHandler
     {
         $connection = new Connection();
         $result = $connection->query($this->query . ';');
-        var_dump($this->query . ';');
-        var_dump($result);
-        $lastInsertID = $connection->lastInsertID();
-        var_dump($connection->query("SELECT LAST_INSERT_ID()"));
+
+        $lastInsertID = $connection->lastInsertID($this->table);
 
         return ['result' => $result, 'lastInsertID' => $lastInsertID];
     }

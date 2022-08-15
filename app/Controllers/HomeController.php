@@ -39,8 +39,9 @@ class HomeController extends Controller
             'price' => '99000'
         ]));*/
 
-        //$department = Department::get();
-        $department = User::get();
+        $department = Department::get();
+        $qb = new QB();
+        $department = $qb->table('product')->first()->exe();
         var_dump($department);
 
         $index = 'home page';
