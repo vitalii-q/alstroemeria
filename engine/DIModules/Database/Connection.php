@@ -21,7 +21,7 @@ class Connection
      */
     public function __construct()
     {
-        $this->db_connection = $db_connection = \engine\Helper\Env::get('DB_CONNECTION', 'mysql');
+        $this->db_connection = \engine\Helper\Env::get('DB_CONNECTION', 'mysql');
 
         $this->connect();
     }

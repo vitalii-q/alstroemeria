@@ -302,6 +302,11 @@ class QB // ПП Builder / Строитель
         }
     }
 
+    /**
+     * @param $param_1
+     * @param $param_2
+     * @return array
+     */
     protected static function argsFormation($param_1, $param_2)
     {
         if(func_num_args() > 2) { // количество переданных в функцию параметров

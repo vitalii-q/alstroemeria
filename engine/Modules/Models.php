@@ -9,10 +9,25 @@ abstract class Models
 {
     use StaticQueryBuilder;
 
+    /**
+     * Selected table
+     *
+     * @var string
+     */
     protected string $table;
 
+    /**
+     * Element attributes
+     *
+     * @var array
+     */
     protected array $attributes;
 
+    /**
+     * Get selected table
+     *
+     * @throws \Exception
+     */
     public function __construct()
     {
         $classNamespaceExp = explode('\\', get_class($this));
@@ -21,21 +36,45 @@ abstract class Models
         $this->setTable($className);
     }
 
+    /**
+     * Get element property
+     *
+     * @param $property
+     * @return mixed
+     */
     public function __get($property)
     {
         return $this->attributes[$property];
     }
 
+    /**
+     * Set element attributes
+     *
+     * @param $attributes
+     * @return void
+     */
     public function setAttributes($attributes)
     {
         $this->attributes = $attributes;
     }
 
+    /**
+     * Set element attribute
+     *
+     * @param $property
+     * @param $value
+     * @return void
+     */
     public function setAttribute($property, $value)
     {
         $this->attributes[$property] = $value;
     }
 
+    /**
+     * Save new element
+     *
+     * @return void
+     */
     public function save()
     {
         unset($this->attributes['id']);
@@ -51,6 +90,13 @@ abstract class Models
         $this::create($this->attributes);
     }
 
+    /**
+     * Search and set class variable "$this->>table"
+     *
+     * @param $className
+     * @return void
+     * @throws \Exception
+     */
     protected function setTable($className)
     {
         $table = convertToSnakeCase($className);
