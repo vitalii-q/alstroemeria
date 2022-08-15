@@ -2,6 +2,7 @@
 
 namespace engine\Modules;
 
+use engine\Database\QB;
 use engine\Database\StaticQueryBuilder;
 
 abstract class Models
@@ -16,6 +17,13 @@ abstract class Models
     {
         $classNamespaceExp = explode('\\', get_class($this));
         $className = end($classNamespaceExp);
+
+        $table = convertToSnakeCase($className);
+
+        $qb = new QB();
+        $checkTable = $qb->query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'")->exe();
+        var_dump($checkTable);
+
         $this->table = convertToSnakeCase($className);
     }
 

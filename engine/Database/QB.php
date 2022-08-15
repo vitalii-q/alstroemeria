@@ -58,6 +58,8 @@ class QB // ПП Builder / Строитель
      */
     protected $update = false;
 
+    protected $handQuery;
+
     /**
      * @param $table
      */
@@ -65,6 +67,14 @@ class QB // ПП Builder / Строитель
     {
         $this->table = '';
         $this->query = '';
+    }
+
+    public function query($query)
+    {
+        $this->query = $query;
+        $this->handQuery = true;
+
+        return $this;
     }
 
     /**
@@ -242,22 +252,25 @@ class QB // ПП Builder / Строитель
     {
         $query = $this->query  . ';';
 
-        if(!$this->update) { // если в запросе не указан update
+        if(!$this->handQuery) { // если запрос не ручной
+            if(!$this->update) { // если в запросе не указан update
 
-            if(!$this->select) { // если в запросе не указан select
-                $query = 'SELECT * FROM ' . $this->table . $query;
+                if(!$this->select) { // если в запросе не указан select
+                    $query = 'SELECT * FROM ' . $this->table . $query;
+                } else {
+                    $query = $this->select . ' FROM ' . $this->table . $query;
+                }
+
             } else {
-                $query = $this->select . ' FROM ' . $this->table . $query;
+                $query = 'UPDATE ' . $this->table . $this->update . $query;
             }
-
-        } else {
-            $query = 'UPDATE ' . $this->table . $this->update . $query;
         }
 
         //var_dump($query);
 
         $connection = new Connection();
         $result = $connection->query($query);
+        var_dump($result);
         $lastInsertID = $connection->lastInsertID(); // ID последнего созданного элемента
 
         if(!$result) { // если пустой результат

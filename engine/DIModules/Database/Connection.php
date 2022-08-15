@@ -29,6 +29,7 @@ class Connection
     {
         $config = Config::class()->get('database'); // конфигурации базы данных
         $db_connection = \engine\Helper\Env::get('DB_CONNECTION', 'mysql');
+        //$db_connection = 'mysql';
 
         try {
             switch ($db_connection) {
@@ -70,6 +71,7 @@ class Connection
      */
     public function lastInsertID()
     {
+        //var_dump($this->link->lastInsertId('department_id_seq'));
         return $this->link->lastInsertId(); // PDO возвращает id последнего элемента
     }
 }
