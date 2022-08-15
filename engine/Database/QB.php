@@ -300,31 +300,6 @@ class QB // ПП Builder / Строитель
 
             return $lastInsertID;
         }
-
-        /*if($lastInsertID) {
-            $this->queryReset();
-
-            return $lastInsertID;
-        } else {
-            if($this->find == true) {
-                $this->queryReset();
-
-                if (isset($result[0])) {
-                    return $result[0];
-                }
-                throw new \Exception(sprintf('<strong>Query error ->find():</strong> %s', $query));
-            }
-
-            if(!$this->first) {
-                $this->queryReset();
-
-                return $result;
-            } else {
-                $this->queryReset();
-
-                return $result[0];
-            }
-        }*/
     }
 
     protected static function argsFormation($param_1, $param_2)
