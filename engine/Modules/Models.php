@@ -18,21 +18,7 @@ abstract class Models
         $classNamespaceExp = explode('\\', get_class($this));
         $className = end($classNamespaceExp);
 
-        /**
-         * Закончить с преверку таблицы на существование user / users
-         */
-        /*$table = convertToSnakeCase($className);
-
-        $qb = new QB();
-        $db_tables = $qb->query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'")->exe();
-        //var_dump($db_tables);
-
-        $table_exists = false;
-        foreach ($db_tables as $table) {
-            //var_dump($table);
-        }*/
-
-        $this->table = convertToSnakeCase($className);
+        $this->setTable($className);
     }
 
     public function __get($property)
@@ -63,5 +49,27 @@ abstract class Models
         }
 
         $this::create($this->attributes);
+    }
+
+    protected function setTable($className)
+    {
+        $table = convertToSnakeCase($className);
+
+        $qb = new QB();
+        $db_tables = $qb->query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'")->exe();
+
+        foreach ($db_tables as $db_table) {
+            if ($db_table->table_name === $table) {
+                $this->table = convertToSnakeCase($className);
+
+                break;
+            }
+
+            if ($db_table->table_name === $table.'s') {
+                $this->table = convertToSnakeCase($className.'s');
+
+                break;
+            }
+        }
     }
 }

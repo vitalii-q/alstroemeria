@@ -41,7 +41,7 @@ class HomeController extends Controller
 
         //$department = Department::find(1);
         //$qb = new QB();
-        //$department = $qb->table('department')->first()->exe();
+        //$department = $qb->table('department')->exe();
         //var_dump($department);
 
         $index = 'home page';

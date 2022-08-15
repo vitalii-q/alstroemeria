@@ -74,13 +74,13 @@ class Connection
      */
     public function lastInsertID($table)
     {
-        if ($this->db_connection === 'mysql')
-        {
+        if ($this->db_connection === 'mysql') {
             return $this->link->lastInsertId(); // PDO возвращает id последнего элемента
         }
-        elseif ($this->db_connection === 'pgsql')
-        {
+        elseif ($this->db_connection === 'pgsql' and $table != null) {
             return $this->query('SELECT max(id) FROM '. $table .' LASTVAL');
         }
+
+        return null;
     }
 }
