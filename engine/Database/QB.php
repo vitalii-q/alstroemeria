@@ -266,8 +266,6 @@ class QB // ПП Builder / Строитель
             }
         }
 
-        var_dump($query);
-
         $connection = new Connection();
         $result = $connection->query($query);
         $lastInsertID = $connection->lastInsertID($this->table); // ID последнего созданного элемента
@@ -275,8 +273,6 @@ class QB // ПП Builder / Строитель
         if(!$result) { // если пустой результат
             return null;
         }
-
-        var_dump($result);
 
         if(!$this->find and !$this->first) {
             $this->queryReset();

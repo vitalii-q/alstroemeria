@@ -42,7 +42,11 @@ final class StaticQueryHandler
      */
     public function where($field, $value, $operator = '=')
     {
-        $this->query .= ' WHERE ' . $field. $operator . '"' . $value . '"';
+        if(is_int($value)) {
+            $this->query .= ' WHERE ' . $field. $operator . $value;
+        } else {
+            $this->query .= ' WHERE ' . $field. $operator . '"' . $value . '"';
+        }
     }
 
     /**
